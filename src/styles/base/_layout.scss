@@ -12,6 +12,11 @@ h4,
 h5,
 h6 {
   font-family: 'GolosTextVF';
+  font-variation-settings: 'wght' 500;
+}
+
+h4 {
+  font-variation-settings: 'wght' 600;
 }
 
 body {
@@ -24,6 +29,9 @@ main {
 
 .ids__wrapper {
   width: 85%;
+  font-size: 1.2em;
+  margin-top: 2em;
+  padding-bottom: 4em;
 }
 
 .video-placeholder {
@@ -42,20 +50,72 @@ main {
 }
 
 .reviews {
-  width: 50%;
-
   p {
     white-space: pre-wrap;
   }
 }
 
+.half {
+  width: 60%;
+}
+
+.teachers {
+  display: flex;
+  gap: 1em;
+
+  .teacher {
+    flex-grow: 1;
+    flex-basis: 50%;
+    flex-shrink: 1;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+}
+
+.photo {
+  width: 30%;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.reviews {
+  display: flex;
+  gap: 1em;
+
+  .review {
+    flex: 1 0 50%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+}
+
+.program {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 0.3em;
+
+  li {
+    border-radius: 1em;
+    height: 15em;
+    margin: 0 !important;
+    padding: 1.5em 1em;
+    border: 1px solid white;
+    background: #ddd;
+
+    &:hover {
+      background: #ccc;
+    }
+  }
+}
+
 .buy-block {
   height: 15em;
-  background: #333;
-
-  color: white;
+  background: #eee;
   padding: 1em;
-  font-size: 1.5em;
 
   display: flex;
   border-radius: 0.5em;
