@@ -8,12 +8,14 @@ const sketch = p => {
   };
 
   p.draw = () => {
-    p.resizeCanvas(container.offsetWidth, container.offsetHeight);
-
     p.background(100);
     p.fill(255);
     p.rect(0, 1, 50, 18);
   };
+
+  window.addEventListener('resize', _ => {
+    p.resizeCanvas(container.offsetWidth, container.offsetHeight);
+  });
 };
 
 let myp5 = new p5(sketch, 'lesson-1');
