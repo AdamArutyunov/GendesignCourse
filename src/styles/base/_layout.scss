@@ -11,8 +11,9 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'GolosTextVF';
-  font-variation-settings: 'wght' 500;
+  font-family: 'GolosUIVF';
+  font-variation-settings: 'wght' 300;
+  font-weight: normal !important;
 }
 
 h4 {
@@ -27,8 +28,20 @@ main {
   position: relative;
 }
 
+.promo {
+  font-size: 1.5em;
+  font-family: 'PT Mono';
+  padding: 0.65em 0.8em 0.55em 0.8em;
+  border: 0.05em solid black;
+  border-radius: 0.5em;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .ids__wrapper {
-  width: 85%;
+  width: 90%;
   font-size: 1.2em;
   margin-top: 2em;
   padding-bottom: 4em;
@@ -61,7 +74,7 @@ main {
 
 .teachers {
   display: flex;
-  gap: 1em;
+  gap: 5em;
 
   .teacher {
     flex-grow: 1;
@@ -82,7 +95,7 @@ main {
 
 .reviews {
   display: flex;
-  gap: 1em;
+  gap: 2em;
 
   .review {
     flex: 1 0 50%;
@@ -103,11 +116,17 @@ main {
     height: 15em;
     margin: 0 !important;
     padding: 1.5em 1em;
-    border: 1px solid white;
-    background: #ddd;
+    border: 1px solid black;
+    overflow: hidden;
 
-    &:hover {
-      background: #ccc;
+    canvas {
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: -1;
+
+      width: 100%;
+      height: 100%;
     }
   }
 }

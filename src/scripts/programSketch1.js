@@ -1,14 +1,19 @@
 import p5 from 'p5';
 
+const container = document.querySelector('#lesson-1');
+
 const sketch = p => {
   p.setup = () => {
-    p.createCanvas(200, 200);
+    p.createCanvas(0, 0);
   };
 
   p.draw = () => {
+    p.resizeCanvas(container.offsetWidth, container.offsetHeight);
+
     p.background(100);
     p.fill(255);
-    p.rect(p.random(1), 1, 50, 18);
+    p.rect(0, 1, 50, 18);
   };
 };
-let myp5 = new p5(sketch, document.querySelector('.program li:first-child'));
+
+let myp5 = new p5(sketch, 'lesson-1');
