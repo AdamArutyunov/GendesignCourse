@@ -95,7 +95,6 @@ main {
 
 .reviews {
   display: flex;
-  gap: 2em;
 
   .review {
     flex: 1 0 50%;
@@ -103,22 +102,34 @@ main {
     display: flex;
     flex-direction: column;
     gap: 1em;
+
+    &:first-child {
+      padding-right: 1.5em;
+    }
+
+    &:last-child {
+      padding-left: 1.5em;
+    }
   }
 }
 
 .program {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 0.3em;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 0.5em;
 
   $brr: 1em;
+
   li {
     border-radius: $brr;
-    height: 15em;
+    aspect-ratio: 2 / 1;
     margin: 0 !important;
-    padding: 1.5em 1em;
-    border: 1px solid black;
+    padding: 1em 1em;
+    //border: 1px solid #ddd;
+    box-shadow: 0 4px 15px 0 #ddd;
     overflow: hidden;
+
+    transition: transform 0.2s ease;
 
     canvas {
       border-radius: $brr;
@@ -136,7 +147,7 @@ main {
 .buy-block {
   height: 15em;
   background: #eee;
-  padding: 1em;
+  padding: 1em 1.2em;
 
   display: flex;
   border-radius: 0.5em;
@@ -146,9 +157,46 @@ main {
   }
 
   .buy-form {
-    width: 50%;
     display: flex;
     flex-direction: column;
+    width: 50%;
     gap: 0.8em;
+  }
+
+  .buy-disclaimer {
+    font-size: 0.9em;
+    color: #888;
+  }
+
+  .buy-action {
+    display: flex;
+    gap: 0.5em;
+  }
+}
+
+#format {
+}
+
+.ids input {
+  border: none;
+  background: white;
+
+  &:focus {
+    border: none;
+    box-shadow: none;
+    outline: 3px solid #ddd;
+  }
+}
+
+b {
+  font-variation-settings: 'wght' 500;
+}
+
+.buy-controls {
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
   }
 }
