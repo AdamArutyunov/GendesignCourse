@@ -6,9 +6,14 @@ export const sk1 = (container, ff) => {
     };
 
     p.draw = () => {
-      p.background(100);
+      if (!ff.inViewport) return;
+      if (ff.mouseHover) {
+        p.background('blue');
+      } else {
+        p.background('orange');
+      }
       p.fill(255);
-      p.rect(0, p.random(3), 50, 18);
+      p.rect(p.mouseX, p.mouseY + p.random(3), 50, 18);
     };
   };
 };

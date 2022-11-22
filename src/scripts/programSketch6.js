@@ -4,7 +4,7 @@ export const sk6 = (container, ff) => {
     let i = 0;
 
     let reset = () => {
-      console.log('resize');
+      // console.log('resize');
       i = 0;
       squares = [];
       squares.push([0, 0, container.offsetWidth, container.offsetHeight]);
@@ -12,7 +12,7 @@ export const sk6 = (container, ff) => {
     };
 
     p.setup = () => {
-      console.log('draw');
+      // console.log('draw');
       p.createCanvas(100, 100);
       p.stroke(255);
       ff.resize();
@@ -47,7 +47,7 @@ export const sk6 = (container, ff) => {
           }
         }
         squares = newSquares;
-        console.log('squares:', squares);
+        // console.log('squares:', squares);
         i++;
         // }
       }
