@@ -2,11 +2,11 @@ import p5 from 'p5';
 import '../styles/main.scss';
 import { sk1 } from './programSketch1';
 // import './programSketch2';
-// import './programSketch6';
+import { sk6 } from './programSketch6';
 
 let sks = [];
 
-let skOpts = [{ sel: '#lesson-1', f: sk1 }, { sel: '#lesson-2', f: sk1 }];
+let skOpts = [{ sel: '#lesson-1', f: sk1 }, { sel: '#lesson-6', f: sk6 }];
 
 function Sketch(skOpt) {
   let container = document.querySelector(skOpt.sel);
