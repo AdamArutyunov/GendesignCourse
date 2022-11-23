@@ -1,11 +1,16 @@
 import p5 from 'p5';
 import '../styles/main.scss';
+import { skH } from './sketchHeader';
 import { sk1 } from './programSketch1';
 import { sk6 } from './programSketch6';
 
 let sks = [];
 
-let skOpts = [{ sel: '#lesson-1', f: sk1 }, { sel: '#lesson-6', f: sk6 }];
+let skOpts = [
+  { sel: '#sketchHeader', f: skH },
+  { sel: '#lesson-1', f: sk1 },
+  { sel: '#lesson-6', f: sk6 },
+];
 
 function Sketch(skOpt) {
   let container = document.querySelector(skOpt.sel);
@@ -29,5 +34,3 @@ for (let skOpt of skOpts) {
   let sk = new Sketch(skOpt);
   sks.push(sk);
 }
-
-console.log('sks:', sks);
