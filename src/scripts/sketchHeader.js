@@ -24,7 +24,7 @@ export const skH = (container, ff) => {
     p.draw = () => {
       if (!ff.inViewport) return;
       p.background('white');
-      let t = (p.millis() / 1000) * 0.3;
+      let t = (p.millis() / 1000) * 0.1;
       p.beginShape();
       for (let i = 0; i < 50; i++) {
         let nx = p.noise(t + i / 100, i) - 0.5;
