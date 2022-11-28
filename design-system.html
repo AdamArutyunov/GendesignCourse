@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Layer 0</title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,viewport-fit=contain"/>
+    <meta name="description" content=":—)"/>
+    <meta name="author" content="Layer 0"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:site_name"/>
+    <meta property="og:title" content="Layer 0"/>
+    <meta property="og:description" content=":—)"/>
+    <meta property="og:url" content="https://github.com/intuition-team/layer-0/design-system"/>
+    <meta property="og:image" content="https://github.com/intuition-team/layer-0/images/poster.jpg"/>
+    <meta property="og:image:type" content="image/jpg"/>
+    <meta property="og:image:width" content="2000"/>
+    <meta property="og:image:height" content="1145"/>
+    <meta property="og:image:alt" content="Layer 0"/>
+    <meta name="twitter:title" content="Layer 0"/>
+    <meta name="twitter:description" content=":—)"/>
+    <meta name="twitter:url" content="https://github.com/intuition-team/layer-0/design-system"/>
+    <link rel="stylesheet" href="/assets/main.9375e5b2.css">
+    <link rel="icon" href="/favicon.png">
+  </head>
+  <body class="ids">
+    <header></header>
+    <div id="sketchHeader"></div>
+    <main>
+      <div class="tmp-with-sidebar">
+        <div class="tmp-sidebar-menu">
+          <ul>
+            <li><a href="#variables">Переменные</a>
+              <ul>
+                <li><a href="#typography">Типографика</a>
+                  <ul>
+                    <li><a href="#ranges">Диапазоны</a></li>
+                    <li><a href="#font-sizes">Размеры шрифта</a></li>
+                  </ul>
+                </li>
+                <li><a href="#color">Цвет</a>
+                  <ul>
+                    <li><a href="#main-colors">Основные</a></li>
+                    <li><a href="#secondary-colors">Дополнительные</a></li>
+                    <li><a href="#dark-theme-colors">Для темных тем</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#components">Компоненты</a>
+              <ul>
+                <li><a href="#headers">Заголовки</a></li>
+                <li><a href="#editorial">Редакционные форматы</a></li>
+                <li><a href="#spacing">Элементы интерфейса</a></li>
+                <li><a href="#ui">Отступы</a></li>
+                <li><a href="#grid">Сетка</a></li>
+              </ul>
+            </li>
+            <li><a href="#wrappers">Контейнеры</a></li>
+          </ul>
+        </div>
+        <section><a href="/">← Назад</a>
+          <div class="ids__stack XS"></div>
+          <h2 id="variables">Переменные</h2>
+          <p>IDS позволяет настроить цветовую палитру и основные параметры типографики через css-переменные. </p>
+        </section>
+        <section>
+          <h3 id="typography">Типографика</h3>
+          <p><code>--ids__font</code> — шрифт, по-умолчанию PT Root в начертаниях Regular, Medium и Bold.</p>
+          <p><code>--ids__density</code> — коэффициент плотности вёрстки.</p>
+          <p>Размеры шрифта увеличиваются в заданных диапазонах на заданных ширинах экрана. По умолчанию это от 16 до 20 пикселей на компьютерах при ширине от 1000 до 1600 пикселей и нескалируемые 17 пикселей на телефонах при ширине от 320 до 768 пикселей.</p>
+          <p>Заголовки увеличиваются умножением на коэффициент размерной сетки. Например, изначальное состояние 20px, коэффициент 1.5. Значит, следующий заголовок будет 30px. Следующий 45px.</p>
+          <p>Основано на <a href="https://utopia.fyi/calculator">Утопии</a>.</p>
+          <h4 id="ranges">Диапазоны</h4>
+          <ul>
+            <li> <code>--type-scale-desktop</code>— коэффициент размерной сетки на компьютерах</li>
+            <li> <code>--font-size-min</code>— минимальный размер шрифта на компьютерах</li>
+            <li> <code>--font-size-max</code>— максимальный размер шрифта на компьютерах</li>
+            <li> <code>--type-scale-mobile</code>— коэффициент размерной сетки на телефонах</li>
+            <li> <code>--font-size-min-mobile</code>— размер шрифта мин телефон</li>
+            <li> <code>--font-size-max-mobile</code>— размер шрифта макс телефон</li>
+          </ul>
+          <h4 id="font-sizes">Размеры шрифта</h4>
+          <p>Получаются путём умножения <code>--step-0</code> на коэффициент размерной сетки <code>--type-scale-desktop</code> или <code>--type-scale-mobile</code></p>
+          <ul>
+            <li><code>--step-0</code>— <code>h4</code>, <code>p</code>. базовый шрифт, переменная с размером шрифта</li>
+            <li><code>--step-1</code>— h3</li>
+            <li><code>--step-2</code>— h2</li>
+            <li><code>--step-3</code>— h1</li>
+          </ul>
+        </section>
+        <section>
+          <h3 id="color">Цвет</h3>
+          <p>Цвета хранятся в виде трёх чисел RGB. Это позволяет гибко настраивать прозрачность.</p>
+          <aside><code>
+              <pre>
+                <p>--ids__text-RGB: 5, 5, 5;</p>
+                <p>color: rgba(var(--ids__text-RGB), 0.7);</p></pre></code></aside>
+          <p>Чтобы задавать цвета css-переменными, используется css-функция <code>RGB()</code> (капсом) вместо sass-функции <code>rgb()</code>:</p>
+          <aside><code>color: RGB(var(--ids__text-RGB));</code></aside>
+          <h4 id="main-colors">Основные</h4>
+          <ul>
+            <li>
+              <div class="tmp-color-sample" style="background-color: rgb(var(--ids__text-RGB));"></div><code>--ids__text-RGB</code>— цвет текста
+            </li>
+            <li>
+              <div class="tmp-color-sample" style="background-color: rgb(var(--ids__link-RGB));"></div><code>--ids__link-RGB</code>— цвет ссылки
+            </li>
+            <li>
+              <div class="tmp-color-sample" style="background-color: rgb(var(--ids__hover-RGB));"></div><code>--ids__hover-RGB</code>— цвет подсветки активных элементов при наведении курсора
+            </li>
+            <li>
+              <div class="tmp-color-sample" style="background-color: rgb(var(--ids__accent-RGB));"></div><code>--ids__accent-RGB</code>— цвет для кнопок и других кликабельных или активных элементов; отличается от цвета бренда, чтобы оставаться заметным среди брендовых иллюстраций
+            </li>
+            <li>
+              <div class="tmp-color-sample" style="background-color: rgb(var(--ids__surface-RGB));"></div><code>--ids__surface-RGB</code>— цвет для плашей, текстовых полей и других «поверхностей», лежащих «в другом визуальном слое»
+            </li>
+          </ul>
+          <h4 id="secondary-colors">Дополнительные</h4>
+          <ul>
+            <li>
+              <div class="tmp-color-sample with-stroke" style="background-color: rgb(var(--ids__background-RGB));"></div><code>--ids__background-RGB</code>— цвет фона
+            </li>
+            <li>
+              <div class="tmp-color-sample" style="background-color: rgb(var(--ids__main-RGB));"></div><code>--ids__main-RGB</code>— узнаваемый цвет бренда; по умолчанию наследует <code>--ids__accent-RGB</code>
+            </li>
+            <li>
+              <div class="tmp-color-sample" style="background-color: rgb(var(--ids__code-RGB));"></div><code>--ids__code-RGB</code>— цвет для выделения кода
+            </li>
+            <li>
+              <div class="tmp-color-sample" style="background-color: rgb(var(--ids__error-RGB));"></div><code>--ids__error-RGB</code>— цвет для сообщений об ошибках
+            </li>
+            <li>
+              <div class="tmp-color-sample" style="background-color: rgb(var(--ids__success-RGB));"></div><code>--ids__success-RGB</code>— цвет для сообщений об успешном выполнении
+            </li>
+            <li>
+              <div class="tmp-color-sample" style="background-color: rgb(var(--ids__outline-RGB));"></div><code>--ids__outline-RGB</code>— цвет обводки для элементов в фокусе; по умолчанию наследует <code>--ids__surface-RGB</code>
+            </li>
+          </ul>
+          <h4 id="dark-theme-colors">Для тёмных тем</h4>
+          <ul>
+            <li>
+              <div class="tmp-color-sample with-stroke" style="background-color: rgb(var(--ids__on-accent-RGB));"></div><code>--ids__on-accent-RGB</code>— цвет текста на фоне цвета accent; по умолчанию наследует <code>--ids__background-RGB</code>
+            </li>
+            <li>
+              <div class="tmp-color-sample with-stroke" style="background-color: rgb(var(--ids__on-main-RGB));"></div><code>--ids__on-main-RGB</code>— цвет текста на фоне цвета main; по умолчанию наследует <code>--ids__background-RGB</code>
+            </li>
+            <li>
+              <div class="tmp-color-sample" style="background-color: rgb(var(--ids__on-surface-RGB));"></div><code>--ids__on-surface-RGB</code>— цвет текста на фоне цвета surface; по умолчанию наследует <code>--ids__text-RGB</code>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <div class="ids__stack S"></div>
+          <h2 id="components">Компоненты </h2>
+        </section>
+        <section>
+          <h6 class="tmp-section-title" id="headers">Заголовки</h6>
+          <h1>Прочный дизайн</h1>
+          <div class="code-example">
+            <aside><code>h1 Прочный дизайн</code></aside>
+          </div>
+          <div class="ids__stack XS"></div>
+          <h2>Язык, который всё улучшает</h2>
+          <div class="code-example">
+            <aside><code>h2 Язык, который всё улучшает</code></aside>
+          </div>
+          <div class="ids__stack XS"></div>
+          <h3>Как придумать язык</h3>
+          <div class="code-example">
+            <aside><code>h3 Как придумать язык</code></aside>
+          </div>
+          <div class="ids__stack XS"></div>
+          <h4>Раскладывать по полочкам и заработать на квартиру</h4>
+          <div class="code-example">
+            <aside><code>h4 Смотрим сквозь дизайн</code></aside>
+          </div>
+          <div class="ids__stack XS"></div>
+          <h5>Хочет больше дизайна</h5>
+          <div class="code-example">
+            <aside><code>h5 Хочет больше дизайна</code></aside>
+          </div>
+          <div class="ids__stack XS"></div>
+          <h6>Почему это бесит</h6>
+          <div class="code-example">
+            <aside><code>h6 Почему это бесит</code></aside>
+          </div>
+        </section>
+        <section>
+          <div class="ids__stack XS"></div>
+          <h6 class="tmp-section-title" id="editorial">Редакционные форматы</h6>
+          <div class="ids__stack XS"></div>
+          <p>Это такой специальный ярлычок для перекладывания ответственности. Бывает, что у клиента всегда всё срочно, он пытается хозяйничать в макетах, хочет больше дизайна и совместить все варианты в одном, пропадает, забывает, сомневается, говорит глупости, цепляется к ерунде, а потом приносит свой вариант и сам с собой не может договориться.</p>
+          <div class="code-example">
+            <aside><code>p Это такой специальный ярлычок для перекладывания ответственности. Бывает, что у клиента всегда всё срочно, он пытается хозяйничать в макетах, хочет больше дизайна и совместить все варианты в одном, пропадает, забывает, сомневается, говорит глупости, цепляется к ерунде, а потом приносит свой вариант и сам с собой не может договориться.</code></aside>
+          </div>
+          <div class="ids__stack XS"></div>
+          <div class="ids__lead">И отлично — он виноват, мы в домике, сидим и ждём лёгкого клиента, а пока временно страдаем.</div>
+          <div class="code-example">
+            <aside><code>p.ids__lead И отлично — он виноват, мы в домике, сидим и ждём лёгкого клиента, а пока временно страдаем.</code></aside>
+          </div>
+        </section>
+        <section>
+          <h2>Что происходит <mark>на самом деле</mark></h2>
+          <div class="code-example">
+            <aside><code>h2 Что происходит #[mark на самом деле]</code></aside>
+          </div>
+          <div class="ids__stack XS"></div>
+          <p>У кого-то могут включаться голоса: «это потому что ты неудачник и у тебя никогда ничего не получается и тебя все ненавидят но ты же ничего другого не умеешь всё равно так что ничего тут уже не сделаешь терпи». Это снова <mark>вот такой человек</mark>, только в обратную сторону.</p>
+          <div class="code-example">
+            <aside><code>p У кого-то могут включаться голоса: «это потому что ты неудачник и у тебя никогда ничего не получается и тебя все ненавидят но ты же ничего другого не умеешь всё равно так что ничего тут уже не сделаешь терпи». Это снова #[mark вот такой человек], только в обратную сторону.</code></aside>
+          </div>
+          <div class="ids__stack XS"></div>
+          <blockquote>Ничего не надо делать</blockquote>
+          <div class="code-example">
+            <aside><code>blockquote Ничего не надо делать</code></aside>
+          </div>
+          <div class="ids__stack XS"></div>
+          <ol>
+            <li>Пункт номер 1</li>
+            <li>Пункт номер 2</li>
+            <li>Пункт номер 3</li>
+          </ol>
+          <div class="code-example">
+            <aside><code>
+                <pre>ol
+  li Пункт номер 1
+  li Пункт номер 2
+  li Пункт номер 3</pre></code></aside>
+          </div>
+          <div class="ids__stack XS"></div>
+          <ul>
+            <li>Пункт номер 1</li>
+            <li>Пункт номер 2</li>
+            <li>Пункт номер 3</li>
+          </ul>
+          <div class="code-example">
+            <aside><code>
+                <pre>ul
+  li Пункт номер 1
+  li Пункт номер 2
+  li Пункт номер 3</pre></code></aside>
+          </div>
+          <div class="ids__stack XS"></div>
+          <ul class="checked">
+            <li>Пункт номер 1</li>
+            <li>Пункт номер 2</li>
+            <li>Пункт номер 3</li>
+          </ul>
+          <div class="code-example">
+            <aside><code>
+                <pre>ul.checked
+  li Пункт номер 1
+  li Пункт номер 2
+  li Пункт номер 3</pre></code></aside>
+          </div>
+          <div class="ids__stack XS"></div>
+          <div class="ids__label" style="margin-bottom: 0.5em;">Привычка №1</div>
+          <div class="code-example">
+            <aside><code>.ids__label Привычка №1</code></aside>
+          </div>
+          <div class="ids__stack XS"></div>
+          <div class="ids__label ids__label-outline" style="margin-bottom: 0.5em;">Просто прелестно</div>
+          <div class="code-example">
+            <aside><code>.ids__label.ids__label-outline Просто прелестно</code></aside>
+          </div>
+          <div class="ids__stack XS"></div>
+          <details>
+            <summary>Пара историй из жизни</summary>
+            <div class="ids__stack XS"></div>
+            <p>Я пришёл на встречу с главным инженером, чтобы обсудить всякие детали — мы уже довольно долго искали баланс между желаниями и возможностями, вроде что-то нащупывалось, решили ускорить процесс и обсудить лично.</p>
+          </details>
+          <div class="code-example">
+            <aside><code>
+                <pre>details
+  summary Пара историй из жизни
+  p Я пришёл на встречу с главным инженером, чтобы обсудить всякие детали — мы уже довольно долго искали баланс между желаниями и возможностями, вроде что-то нащупывалось, решили ускорить процесс и обсудить лично.</pre></code></aside>
+          </div>
+          <div class="ids__stack XS"></div>
+          <aside>
+            <p>Я пришёл на встречу с главным инженером, чтобы обсудить всякие детали — мы уже довольно долго искали баланс между желаниями и возможностями, вроде что-то нащупывалось, решили ускорить процесс и обсудить лично.</p>
+          </aside>
+          <div class="code-example">
+            <aside><code>
+                <pre>aside
+  p Я пришёл на встречу с главным инженером, чтобы обсудить всякие детали — мы уже довольно долго искали баланс между желаниями и возможностями, вроде что-то нащупывалось, решили ускорить процесс и обсудить лично.</pre></code></aside>
+          </div>
+        </section>
+        <section>
+          <p>Иллюстрация с подписью:</p>
+          <figure><img src="https://images.unsplash.com/photo-1628583768483-a762d81fa84c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=2779&amp;q=80">
+            <figcaption>Mystical scene of a cabin on a hill. ©Julian Steenbergen</figcaption>
+          </figure>
+          <div class="code-example">
+            <aside><code>
+                <pre>figure
+  img(src="/images/example-pic.jpg")
+  figcaption Mystical scene of a cabin on a hill. ©Julian Steenbergen</pre></code></aside>
+          </div>
+        </section>
+        <section>
+          <p>Модификаторы</p>
+          <div class="code-example">
+            <aside><code>
+                <pre>figure.XXS
+  img(src="/images/example-pic.jpg")</pre></code></aside>
+          </div>
+          <div class="code-example"><code>.XXS</code></div>
+          <figure class="XXS"><img src="https://images.unsplash.com/photo-1628583768483-a762d81fa84c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=2779&amp;q=80"></figure>
+          <div class="code-example"><code>.XS</code></div>
+          <figure class="XS"><img src="https://images.unsplash.com/photo-1628583768483-a762d81fa84c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=2779&amp;q=80"></figure>
+          <div class="code-example"><code>.S</code></div>
+          <figure class="S"><img src="https://images.unsplash.com/photo-1628583768483-a762d81fa84c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=2779&amp;q=80"></figure>
+        </section>
+        <section>
+          <div class="ids__stack S"></div>
+          <h6 class="tmp-section-title" id="spacing">Отступы</h6>
+          <div class="ids__stack XS"></div>
+          <div class="code-example"><code>.ids__stack.XS</code></div>
+          <div class="ids__stack XS tmp-colorized-space"></div>
+          <div class="ids__stack XS"></div>
+          <div class="code-example"><code>.ids__stack.S</code></div>
+          <div class="ids__stack S tmp-colorized-space"></div>
+          <div class="ids__stack XS"></div>
+          <div class="code-example"><code>.ids__stack.M</code></div>
+          <div class="ids__stack M tmp-colorized-space"></div>
+          <div class="ids__stack XS"></div>
+          <div class="code-example"><code>.ids__stack.L</code></div>
+          <div class="ids__stack L tmp-colorized-space"></div>
+          <div class="ids__stack XS"></div>
+          <div class="code-example"><code>.ids__stack.XL</code></div>
+          <div class="ids__stack XL tmp-colorized-space"></div>
+        </section>
+        <section>
+          <div class="ids__stack S"></div>
+          <h6 class="tmp-section-title" id="ui">Элементы интерфейса</h6>
+          <div class="ids__stack XS"></div>
+          <button style="margin-bottom: 0.5em;">Отправить</button>
+          <div class="code-example">
+            <aside><code>button Отправить</code></aside>
+          </div>
+          <div class="ids__stack XS"></div>
+          <p>Модификаторы:</p>
+          <div class="flex-wrap">
+            <div>
+              <div class="code-example"><code>button.XS</code></div>
+              <button class="XS">Отправить</button>
+            </div>
+            <div>
+              <div class="code-example"><code>.S</code></div>
+              <button class="S">Отправить</button>
+            </div>
+            <div>
+              <div class="code-example"><code>.M</code></div>
+              <button class="M">Отправить</button>
+            </div>
+            <div>
+              <div class="code-example"><code>.L</code></div>
+              <button class="L">Отправить</button>
+            </div>
+            <div>
+              <div class="code-example"><code>.XL</code></div>
+              <button class="XL">Отправить</button>
+            </div>
+          </div>
+          <div class="ids__stack S"></div><a class="ids__button-link" href="/design-system" style="margin-bottom: 0.5em;">Заполнить заявку</a>
+          <div class="code-example">
+            <aside><code>a.ids__button-link(href="/design-system") Заполнить заявку</code></aside>
+          </div>
+          <div class="ids__stack S"></div>
+          <input type="text" placeholder="Текст" style="margin-bottom: 0.5em;">
+          <div class="code-example">
+            <aside><code>input(type='text' placeholder='Текст')</code></aside>
+          </div>
+          <div class="ids__stack XS"></div>
+          <p>Модификаторы:</p>
+          <div class="flex-wrap">
+            <div>
+              <div class="code-example"><code>input.XS</code></div>
+              <input class="XS" type="text" placeholder="Текст">
+            </div>
+            <div>
+              <div class="code-example"><code>.S</code></div>
+              <input class="S" type="text" placeholder="Текст">
+            </div>
+            <div>
+              <div class="code-example"><code>.M</code></div>
+              <input class="M" type="text" placeholder="Текст">
+            </div>
+            <div>
+              <div class="code-example"><code>.L</code></div>
+              <input class="L" type="text" placeholder="Текст">
+            </div>
+            <div>
+              <div class="code-example"><code>.XL</code></div>
+              <input class="XL" type="text" placeholder="Текст">
+            </div>
+          </div>
+          <div class="ids__stack S"></div>
+          <div class="ids__form-error-message" style="margin-bottom: 1em;">Этот адрес уже используется. Если вы хотите купить книгу заново, нужен другой адрес, а если вы хотите войти, <a href="">войдите</a></div>
+          <div class="code-example">
+            <aside><code>.ids__form-error-message Этот адрес уже используется. Если вы хотите купить книгу заново, нужен другой адрес, а если вы хотите войти, #[a(href=&quot;&quot;) войдите]</code></aside>
+          </div>
+          <div class="ids__stack XS"></div>
+          <div class="ids__form-success-message" style="margin-bottom: 1em;">Мы отправили ссылку для входа — проверьте <a href="">почту</a>, пожалуйста</div>
+          <div class="code-example">
+            <aside><code>.ids__form-success-message Мы отправили ссылку для входа — проверьте #[a(href=&quot;&quot;) почту], пожалуйста</code></aside>
+          </div>
+          <div class="ids__stack S"></div>
+          <input class="ids__input-text-line" type="text" placeholder="Текст">
+          <div class="code-example">
+            <aside><code>input.ids__input-text-line(type='text' placeholder='Текст')</code></aside>
+          </div>
+          <div class="ids__stack S"></div>
+          <textarea placeholder="Текст" style="margin-bottom: 0.5em;"></textarea>
+          <div class="code-example">
+            <aside><code>textarea(placeholder='Текст')</code></aside>
+          </div>
+          <div class="ids__stack S"></div>
+          <div class="ids__select" style="margin-bottom: 0.5em;">
+            <select>
+              <option>Кошки</option>
+              <option>Собаки</option>
+              <option>Лягушки</option>
+              <option>Кроты</option>
+              <option>Хомяки</option>
+              <option>Баклажаны</option>
+            </select>
+          </div>
+          <div class="code-example">
+            <aside><code>
+                <pre>.ids__select
+  select
+    option Кошки
+    option Собаки
+    option Лягушки
+    option Кроты
+    option Хомяки
+    option Баклажаны</pre></code></aside>
+          </div>
+          <div class="ids__stack S"></div>
+          <div class="ids__checkbox" style="margin-bottom: 0.5em;">
+            <input type="checkbox" id="checkbox-sample">
+            <label for="checkbox-sample">Согласен, что данные обработаются</label>
+          </div>
+          <div class="code-example">
+            <aside><code>
+                <pre>.ids__checkbox
+  input(type='checkbox' id="checkbox-sample")
+  label(for="checkbox-sample") Согласен, что данные обработаются</pre></code></aside>
+          </div>
+          <div class="ids__stack S"></div>
+          <div class="ids__radio" style="margin-bottom: 0.5em;">
+            <input type="radio" id="radio-sample-1" name="radio-sample" checked>
+            <label for="radio-sample-1">Курица</label><br>
+            <input type="radio" id="radio-sample-2" name="radio-sample">
+            <label for="radio-sample-2">Рыба</label><br>
+            <input type="radio" id="radio-sample-3" name="radio-sample">
+            <label for="radio-sample-3">Ни то, ни другое</label>
+          </div>
+          <div class="code-example">
+            <aside><code>
+                <pre>input(type='radio' id='radio-sample-1' name='radio-sample' checked)
+label(for='radio-sample-1') Курица
+br
+input(type='radio' id='radio-sample-2' name='radio-sample')
+label(for='radio-sample-2') Рыба
+br
+input(type='radio' id='radio-sample-3' name='radio-sample')
+label(for='radio-sample-3') Ни то, ни другое</pre></code></aside>
+          </div>
+          <div class="ids__stack S"></div>
+          <div class="flex-wrap">
+            <div>
+              <div class="code-example"><code>.ids__radiogroup-toggle</code></div>
+              <div class="ids__radiogroup-toggle">
+                <div class="ids__radiogroup-option">
+                  <input type="radio" id="option1" name="radio-toggle-sample" checked>
+                  <label for="option1">Понедельник</label>
+                </div>
+                <div class="ids__radiogroup-option">
+                  <input type="radio" id="option2" name="radio-toggle-sample">
+                  <label for="option2">Вторник</label>
+                </div>
+                <div class="ids__radiogroup-option">
+                  <input type="radio" id="option3" name="radio-toggle-sample">
+                  <label for="option3">Среда</label>
+                </div>
+                <div class="ids__radiogroup-option">
+                  <input type="radio" id="option4" name="radio-toggle-sample">
+                  <label for="option4">Четверг</label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="code-example"><code>.ids__radiogroup-toggle.monochrome</code></div>
+              <div class="ids__radiogroup-toggle monochrome">
+                <div class="ids__radiogroup-option">
+                  <input type="radio" id="option01" name="radio-toggle-mono-sample" checked>
+                  <label for="option01">Понедельник</label>
+                </div>
+                <div class="ids__radiogroup-option">
+                  <input type="radio" id="option02" name="radio-toggle-mono-sample">
+                  <label for="option02">Вторник</label>
+                </div>
+                <div class="ids__radiogroup-option">
+                  <input type="radio" id="option03" name="radio-toggle-mono-sample">
+                  <label for="option03">Среда</label>
+                </div>
+                <div class="ids__radiogroup-option">
+                  <input type="radio" id="option04" name="radio-toggle-mono-sample">
+                  <label for="option04">Четверг</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="code-example" style="margin-top: 0.5em;">
+            <aside><code>
+                <pre>.ids__radiogroup-toggle
+  .ids__radiogroup-option
+    input(type='radio' id='option1' name='radio-toggle-sample' checked)
+    label(for='option1') Понедельник
+  .ids__radiogroup-option
+    input(type='radio' id='option2' name='radio-toggle-sample')
+    label(for='option2') Вторник
+  .ids__radiogroup-option
+    input(type='radio' id='option3' name='radio-toggle-sample')
+    label(for='option3') Среда
+  .ids__radiogroup-option
+    input(type='radio' id='option4' name='radio-toggle-sample')
+    label(for='option4') Четверг</pre></code></aside>
+          </div>
+          <div class="ids__stack S"></div>
+          <table>
+            <tr> 
+              <th>Первая версия </th>
+              <th>Цикл</th>
+              <th>Поток</th>
+            </tr>
+            <tr> 
+              <td>Лендинг, рекламная кампания</td>
+              <td>Раздел сайта, редактор статей</td>
+              <td>Иллюстрации для статей</td>
+            </tr>
+            <tr> 
+              <td>MVP</td>
+              <td>Спринт</td>
+              <td>Конвейер</td>
+            </tr>
+            <tr> 
+              <td>Минимальный</td>
+              <td>Подробный</td>
+              <td>Вместо плана — чёткий процесс</td>
+            </tr>
+          </table>
+          <div class="code-example" style="margin-top: 0.5em;">
+            <aside><code>
+                <pre>table
+  tr 
+    th Первая версия 
+    th Цикл
+    th Поток
+  tr 
+    td Лендинг, рекламная кампания
+    td Раздел сайта, редактор статей
+    td Иллюстрации для статей
+  tr 
+    td MVP
+    td Спринт
+    td Конвейер
+  tr 
+    td Минимальный
+    td Подробный
+    td Вместо плана — чёткий процесс</pre></code></aside>
+          </div>
+        </section>
+        <section>
+          <div class="ids__stack S"></div>
+          <h6 class="tmp-section-title" id="grid">Сетка</h6>
+          <p>Модификатор размера регулирует количество колонок сетки. Например, XXL — 2 колонки, XL — 3, L — 4, и так далее до XXS — 8 колонок.</p>
+          <div class="ids__grid XXL ids__grid-inset-S">
+            <div class="ids__grid-cell">
+              <div class="ids__stack S tmp-colorized-space">
+                <p>Текст в ячейке</p>
+              </div>
+            </div>
+            <div class="ids__grid-cell">
+              <div class="ids__stack S tmp-colorized-space">
+                <p>Текст в ячейке</p>
+              </div>
+            </div>
+          </div>
+          <div class="code-example">
+            <aside><code>
+                <pre>.ids__grid.XXL.ids__grid-inset-S
+  .ids__grid-cell
+    p Текст в ячейке
+  .ids__grid-cell
+    p Текст в ячейке</pre></code></aside>
+          </div>
+          <div class="ids__grid XL ids__grid-inset-S">
+            <div class="ids__grid-cell">
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+            <div class="ids__grid-cell">
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+            <div class="ids__grid-cell">
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+          </div>
+          <div class="code-example">
+            <aside><code>.ids__grid.XL</code></aside>
+          </div>
+          <div class="ids__grid L ids__grid-inset-S">
+            <div class="ids__grid-cell">
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+            <div class="ids__grid-cell">
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+            <div class="ids__grid-cell">
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+            <div class="ids__grid-cell">
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+          </div>
+          <div class="code-example">
+            <aside><code>.ids__grid.L</code></aside>
+          </div>
+          <div class="ids__grid M ids__grid-inset-S">
+            <div class="ids__grid-cell">
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+            <div class="ids__grid-cell">
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+            <div class="ids__grid-cell">
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+            <div class="ids__grid-cell">
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+            <div class="ids__grid-cell">
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+          </div>
+          <div class="code-example">
+            <aside><code>.ids__grid.M</code></aside>
+          </div>
+          <div class="ids__grid S ids__grid-inset-S">
+            <div class="ids__grid-cell">
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+            <div class="ids__grid-cell">
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+            <div class="ids__grid-cell">
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+            <div class="ids__grid-cell">
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+            <div class="ids__grid-cell">
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+            <div class="ids__grid-cell">
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+          </div>
+          <div class="code-example">
+            <aside><code>.ids__grid.S</code></aside>
+          </div>
+          <div class="ids__grid XS ids__grid-inset-S">
+            <div class="ids__grid-cell">
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+            <div class="ids__grid-cell">
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+            <div class="ids__grid-cell">
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+            <div class="ids__grid-cell">
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+            <div class="ids__grid-cell">
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+            <div class="ids__grid-cell">
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+            <div class="ids__grid-cell">
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+          </div>
+          <div class="code-example">
+            <aside><code>.ids__grid.XS</code></aside>
+          </div>
+          <div class="ids__grid XXS ids__grid-inset-S">
+            <div class="ids__grid-cell">
+              <div class="tmp-colorized-space"></div>
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+            <div class="ids__grid-cell">
+              <div class="tmp-colorized-space"></div>
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+            <div class="ids__grid-cell">
+              <div class="tmp-colorized-space"></div>
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+            <div class="ids__grid-cell">
+              <div class="tmp-colorized-space"></div>
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+            <div class="ids__grid-cell">
+              <div class="tmp-colorized-space"></div>
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+            <div class="ids__grid-cell">
+              <div class="tmp-colorized-space"></div>
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+            <div class="ids__grid-cell">
+              <div class="tmp-colorized-space"></div>
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+            <div class="ids__grid-cell">
+              <div class="tmp-colorized-space"></div>
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+          </div>
+          <div class="code-example">
+            <aside><code>.ids__grid.XXS</code></aside>
+          </div>
+          <div class="ids__stack S"></div>
+          <p>Правый и нижний отступ ячейки <code>.ids__grid-inset</code></p>
+          <div class="ids__grid XXL ids__grid-inset-L">
+            <div class="ids__grid-cell tmp-colorized-space">
+              <div class="tmp-colorized-space"></div>
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+            <div class="ids__grid-cell tmp-colorized-space">
+              <div class="tmp-colorized-space"></div>
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+          </div>
+          <div class="code-example" style="margin-top: 0.5em;">
+            <aside><code>
+                <pre>.ids__grid.XXL.ids__grid-inset-L
+  .ids__grid-cell
+  .ids__grid-cell</pre></code></aside>
+          </div>
+          <div class="ids__grid XXL ids__grid-inset-M">
+            <div class="ids__grid-cell tmp-colorized-space">
+              <div class="tmp-colorized-space"></div>
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+            <div class="ids__grid-cell tmp-colorized-space">
+              <div class="tmp-colorized-space"></div>
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+          </div>
+          <div class="code-example" style="margin-top: 0.5em;">
+            <aside><code>
+                <pre>.ids__grid.XXL.ids__grid-inset-M</pre></code></aside>
+          </div>
+          <div class="ids__grid XXL ids__grid-inset-S">
+            <div class="ids__grid-cell tmp-colorized-space">
+              <div class="tmp-colorized-space"></div>
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+            <div class="ids__grid-cell tmp-colorized-space">
+              <div class="tmp-colorized-space"></div>
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+          </div>
+          <div class="code-example" style="margin-top: 0.5em;">
+            <aside><code>
+                <pre>.ids__grid.XXL.ids__grid-inset-S</pre></code></aside>
+          </div>
+          <div class="ids__grid XXL">
+            <div class="ids__grid-cell tmp-colorized-space">
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+            <div class="ids__grid-cell tmp-colorized-space">
+              <div class="ids__stack S tmp-colorized-space"></div>
+            </div>
+          </div>
+          <div class="code-example" style="margin-top: 0.5em;">
+            <aside><code>
+                <pre>.ids__grid.XXL
+  .ids__grid-cell
+  .ids__grid-cell</pre></code></aside>
+          </div>
+        </section>
+        <section>
+          <div class="ids__stack S"></div>
+          <h2 id="wrappers">Контейнеры</h2>
+          <div class="ids__stack XS"></div>
+          <p><code>.ids__wrapper</code> — контейнер шириной 76%, автоматически выравнивается по центру маржинами</p>
+          <div class="ids__wrapper tmp-colorized-space">
+            <div class="ids__stack M tmp-colorized-space"></div>
+          </div>
+          <div class="ids__stack XS"></div>
+          <p><code>.ids__wrapper.ids__full-width</code> — модификация с шириной 100% и паддингами</p>
+          <div class="tmp-colorized-space">
+            <div class="ids__wrapper ids__full-width">
+              <div class="ids__stack M tmp-colorized-space"></div>
+            </div>
+          </div>
+          <div class="ids__stack XS"></div>
+          <p><code>.ids__wrapper.ids__edge-to-edge</code> — модификация с шириной 100% без паддингов</p>
+          <div class="tmp-colorized-space">
+            <div class="ids__wrapper ids__edge-to-edge">
+              <div class="ids__stack M tmp-colorized-space"></div>
+            </div>
+          </div>
+          <div class="ids__stack XS"></div>
+          <p><code>.ids__wrapper.ids__shift-right</code> — контейнер шириной 76% с паддингом справа</p>
+          <div class="ids__wrapper ids__shift-right tmp-colorized-space">
+            <div class="ids__stack M tmp-colorized-space"></div>
+          </div>
+          <div class="ids__stack XS"></div>
+          <p><code>.ids__wrapper.ids__shift-left</code> — контейнер шириной 76% с паддингом слева</p>
+          <div class="ids__wrapper ids__shift-left tmp-colorized-space">
+            <div class="ids__stack M tmp-colorized-space"></div>
+          </div>
+          <div class="ids__stack XS"></div>
+          <p><code>.ids__text</code> — контейнер шириной 85%, в мобильной версии 100%</p>
+          <div class="ids__text tmp-colorized-space">
+            <div class="ids__stack M tmp-colorized-space"></div>
+          </div>
+        </section>
+        <section>
+          <div class="ids__stack L"></div>
+        </section>
+      </div>
+    </main>
+    <footer></footer>
+    <script src="/assets/main.9375e5b2.js"></script>
+  </body>
+</html>
