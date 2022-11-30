@@ -1,14 +1,17 @@
+'use strict';
+
 import p5 from 'p5';
 import '../styles/main.scss';
 import { skH } from './sketchHeader';
-import { sk1 } from './programSketch1';
+import { sk4 } from './programSketch4';
 import { sk6 } from './programSketch6';
+import './theory.js';
 
 let sks = [];
 
 let skOpts = [
   { sel: '#sketchHeader', f: skH },
-  { sel: '#lesson-1', f: sk1 },
+  { sel: '#lesson-4', f: sk4 },
   { sel: '#lesson-6', f: sk6 },
 ];
 

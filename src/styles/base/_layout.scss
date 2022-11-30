@@ -133,6 +133,15 @@ main {
 
     transition: transform 0.2s ease;
 
+    .bg {
+      font-family: 'PT Mono';
+      font-size: 0.8em;
+      color: #ddd;
+      white-space: pre-line;
+      padding: 0.3em;
+    }
+
+    .bg,
     canvas {
       border-radius: $brr;
       position: absolute;
