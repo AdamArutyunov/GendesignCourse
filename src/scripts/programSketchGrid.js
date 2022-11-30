@@ -1,4 +1,4 @@
-export const sk4 = (container, ff) => {
+export const skGrid = (container, ff) => {
   return p => {
     p.setup = () => {
       p.createCanvas(10, 50);

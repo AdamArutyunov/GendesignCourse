@@ -3,16 +3,16 @@
 import p5 from 'p5';
 import '../styles/main.scss';
 import { skH } from './sketchHeader';
-import { sk4 } from './programSketch4';
-import { sk6 } from './programSketch6';
+import { skGrid } from './programSketchGrid';
+import { skSubdiv } from './programSketchSubdiv';
 import './theory.js';
 
 let sks = [];
 
 let skOpts = [
   { sel: '#sketchHeader', f: skH },
-  { sel: '#lesson-4', f: sk4 },
-  { sel: '#lesson-6', f: sk6 },
+  { sel: '#lesson-4', f: skGrid },
+  { sel: '#lesson-6', f: skSubdiv },
 ];
 
 function Sketch(skOpt) {

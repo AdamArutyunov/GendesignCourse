@@ -1,4 +1,4 @@
-export const sk6 = (container, ff) => {
+export const skSubdiv = (container, ff) => {
   return p => {
     let squares = [];
     let i = 0;
