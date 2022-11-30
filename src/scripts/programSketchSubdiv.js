@@ -5,9 +5,15 @@ export const skSubdiv = (container, ff) => {
     let inViewportPrev;
 
     let reset = () => {
-      i = 0;
       squares = [];
-      squares.push([0, 0, container.offsetWidth, container.offsetHeight]);
+      squares.push([
+        0,
+        0,
+        container.offsetWidth,
+        container.offsetHeight,
+        false /*not done*/,
+      ]);
+      subdiv();
       p.loop();
       p.background(200);
     };
@@ -23,35 +29,67 @@ export const skSubdiv = (container, ff) => {
       reset();
     };
 
-    p.draw = () => {
-      if (inViewportPrev === false && ff.inViewport === true) {
-        reset();
-      }
-      inViewportPrev = ff.inViewport;
-      if (i > 12) {
-        return;
-      } else {
+    function subdiv() {
+      // p.randomSeed(Math.random()*9999)
+      for (let i = 0; i < 11; i++) {
         let newSquares = [];
         for (let s of squares) {
-          if (p.random() < 0.8 || i < 4) {
+          if (s[4] == false /*not done*/ && (p.random() < 0.7 || i < 4)) {
             if (s[2] > s[3]) {
               // horiz
-              newSquares.push([s[0], s[1], s[2] / 2, s[3]]);
-              newSquares.push([s[0] + s[2] / 2, s[1], s[2] / 2, s[3]]);
+              newSquares.push([s[0], s[1], s[2] / 2, s[3], false /*not done*/]);
+              newSquares.push([
+                s[0] + s[2] / 2,
+                s[1],
+                s[2] / 2,
+                s[3],
+                false /*not done*/,
+              ]);
             } else {
               // vert
-              newSquares.push([s[0], s[1], s[2], s[3] / 2]);
-              newSquares.push([s[0], s[1] + s[3] / 2, s[2], s[3] / 2]);
+              newSquares.push([s[0], s[1], s[2], s[3] / 2, false /*not done*/]);
+              newSquares.push([
+                s[0],
+                s[1] + s[3] / 2,
+                s[2],
+                s[3] / 2,
+                false /*not done*/,
+              ]);
             }
           } else {
-            let randomColor = p.random(200, 255);
-            p.fill(randomColor);
-            p.rect(...s);
+            newSquares.push([s[0], s[1], s[2], s[3], true /*done*/]);
           }
         }
         squares = newSquares;
-        i++;
       }
+    }
+
+    p.draw = () => {
+      p.randomSeed(100);
+      // p.background('red')
+      let t = p.frameCount;
+      // p.circle(100,100,100 + p.sin(10+t))
+      if (inViewportPrev === false && ff.inViewport === true) {
+        reset();
+      }
+      for (let i = 0; i < squares.length; i++) {
+        let s = squares[i];
+        let randomColor = p.random(200, 255);
+        p.fill(randomColor);
+        let x = s[0];
+        let y = s[1];
+        let offset = 100 * Math.sin(t * 0.005 + i) ** 9001;
+        if (p.random() < 0.5) {
+          x += offset;
+        } else {
+          y += offset;
+        }
+        let w = s[2];
+        let h = s[3];
+        p.rect(x, y, w, h);
+      }
+
+      inViewportPrev = ff.inViewport;
     };
   };
 };
