@@ -62,12 +62,6 @@ main {
   }
 }
 
-.reviews {
-  p {
-    white-space: pre-wrap;
-  }
-}
-
 .half {
   width: 60%;
 }
@@ -97,6 +91,10 @@ main {
 
 .reviews {
   display: flex;
+
+  p {
+    white-space: pre-line;
+  }
 
   .review {
     flex: 1 0 50%;
