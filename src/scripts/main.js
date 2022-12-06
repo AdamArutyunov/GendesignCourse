@@ -4,6 +4,7 @@ import p5 from 'p5';
 import '../styles/main.scss';
 import { skH } from './sketchHeader';
 import { skGrid } from './programSketchGrid';
+import { skFlow } from './programSketchFlow';
 import { skSubdiv } from './programSketchSubdiv';
 import './theory.js';
 
@@ -12,6 +13,7 @@ let sks = [];
 let skOpts = [
   { sel: '#sketchHeader', f: skH },
   { sel: '#lesson-4', f: skGrid },
+  { sel: '#lesson-5', f: skFlow },
   { sel: '#lesson-6', f: skSubdiv },
 ];
 
