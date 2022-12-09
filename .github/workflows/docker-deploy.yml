@@ -22,6 +22,9 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GH_TOKEN }}
+          
+      - name: Print current directory
+        run: ls -la
 
       - name: Pushing Image to Github Container Registry
         uses: docker/build-push-action@v2
