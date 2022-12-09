@@ -1,6 +1,7 @@
 export const skFlow = (container, ff) => {
   return p => {
     let circles;
+    let frame = 0;
 
     p.setup = function() {
       p.createCanvas(400, 400);
@@ -18,14 +19,14 @@ export const skFlow = (container, ff) => {
       circles = [];
       p.background('white');
 
-      for (let i = 0; i < 1000; i++) {
+      for (let i = 0; i < 100; i++) {
         let randomColor = p.random(200, 255);
         circles.push([...getRandomPixel(), randomColor, 100]);
       }
     }
 
     function getVector(x, y) {
-      let k = 2;
+      let k = 4;
       let s = 20;
 
       let dx = ((p.noise(x / s, y / s, 0) - 0.5) * k) / 2;
@@ -40,11 +41,11 @@ export const skFlow = (container, ff) => {
 
     p.draw = () => {
       if (!ff.inViewport) return;
-      if (ff.mouseHover || p.frameCount < 300) {
+      if (ff.mouseHover || frame < 300) {
         p.noStroke();
 
         for (let c of circles) {
-          if (c[3] <= 0) return;
+          // if (c[3] <= 0) return;
 
           p.fill(c[2]);
           p.circle(c[0], c[1], 10);
@@ -59,6 +60,7 @@ export const skFlow = (container, ff) => {
           c[1] += vector[1];
           c[3] -= 0.5;
         }
+        frame++;
       }
     };
   };

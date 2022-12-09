@@ -1,5 +1,6 @@
 export const skImg = (container, ff) => {
   return p => {
+    let frame = 0;
     let N, M;
     let rowsNum;
     let colsNum;
@@ -35,7 +36,7 @@ export const skImg = (container, ff) => {
 
     p.draw = () => {
       if (!ff.inViewport) return;
-      if (ff.mouseHover || p.frameCount < 3) {
+      if (ff.mouseHover || frame < 3) {
         p.background('white');
         p.tint(255, 100);
         for (let j = 0; j < N; j++) {
@@ -58,6 +59,7 @@ export const skImg = (container, ff) => {
           }
         }
         p.filter(p.GRAY);
+        frame++;
       }
     };
   };
