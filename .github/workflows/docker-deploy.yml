@@ -16,43 +16,42 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    
-    - name: Logging into GitHub Container Registry
-      uses: docker/login-action@v1
-      with:
-        registry: ghcr.io
-        username: ${{ github.repository_owner }}
-        password: ${{ secrets.GH_TOKEN }}
-        
-    - name: Pushing Image to Github Container Registry
-      uses: docker/build-push-action@v2
-      with:
-        context: .
-        version: latest
-        file: Dockerfile
-        push: true
-        tags: ghcr.io/gendesign_course:latest
-        
-    - name: Deploy to Docker Host
-      uses: appleboy/ssh-action@master
-      with:
-        host: 84.201.158.229
-        username: adam
-        key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
-        port: 22
-        script: |
-          # Stop all running Docker Containers
-          docker kill $(docker ps -q)
+      - name: Logging into GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GH_TOKEN }}
 
-          # Free up space
-          docker system prune -a
+      - name: Pushing Image to Github Container Registry
+        uses: docker/build-push-action@v2
+        with:
+          context: ./bot
+          version: latest
+          file: ./bot/Dockerfile
+          push: true
+          tags: ghcr.io/gendesign_course:latest
 
-          # Login to Github Container Registry
-          docker login https://ghcr.io -u ${{ github.repository_owner }} -p ${{ secrets.GH_TOKEN }}
+      - name: Deploy to Docker Host
+        uses: appleboy/ssh-action@master
+        with:
+          host: 84.201.158.229
+          username: adam
+          key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            # Stop all running Docker Containers
+            docker kill $(docker ps -q)
 
-          # Pull the Docker Image 
-          docker pull ghcr.io/${{ github.repository }}:latest
+            # Free up space
+            docker system prune -a
 
-          # Run a new container from a new image
-          docker run -d -p 80:8080 -p 443:443 -t ghcr.io/gendesign_course:latest
+            # Login to Github Container Registry
+            docker login https://ghcr.io -u ${{ github.repository_owner }} -p ${{ secrets.GH_TOKEN }}
+
+            # Pull the Docker Image 
+            docker pull ghcr.io/${{ github.repository }}:latest
+
+            # Run a new container from a new image
+            docker run -d -p 80:8080 -p 443:443 -t ghcr.io/gendesign_course:latest
 
