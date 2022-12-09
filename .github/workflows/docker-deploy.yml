@@ -31,7 +31,7 @@ jobs:
           context: ./bot
           version: latest
           push: true
-          tags: ghcr.io/gendesign_course:latest
+          tags: ghcr.io/${{ github.repository_owner }}/gendesign_course:latest
 
       - name: Deploy to Docker Host
         uses: appleboy/ssh-action@master
@@ -54,5 +54,5 @@ jobs:
             docker pull ghcr.io/${{ github.repository }}:latest
 
             # Run a new container from a new image
-            docker run -d -p 80:8080 -p 443:443 -t ghcr.io/gendesign_course:latest
+            docker run -d -p 80:8080 -p 443:443 -t ghcr.io/${{ github.repository_owner }}/gendesign_course:latest
 
