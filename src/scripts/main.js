@@ -7,6 +7,7 @@ import { skGrid } from './programSketchGrid';
 import { skFlow } from './programSketchFlow';
 import { skImg } from './programSketchImg';
 import { skSubdiv } from './programSketchSubdiv';
+import { skPolar } from './programSketchPolar';
 import './theory.js';
 
 let sks = [];
@@ -17,6 +18,7 @@ let skOpts = [
   { sel: '#lesson-5', f: skFlow },
   { sel: '#lesson-6', f: skSubdiv },
   { sel: '#lesson-7', f: skImg },
+  { sel: '#lesson-8', f: skPolar },
 ];
 
 function Sketch(skOpt) {
