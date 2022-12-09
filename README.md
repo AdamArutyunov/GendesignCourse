@@ -1,3 +1,10 @@
+TL;DR:
+
+```
+nvm use 14.19.3
+yarn start
+```
+
 # Layer-0
 
 Layer 0 — это шаблон проектов Интуиции с Pug, SCSS, jquery и со встроенным css-фреймворком.
