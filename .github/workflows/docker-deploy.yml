@@ -1,0 +1,27 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+    defaults:
+      run:
+        working-directory: ./bot
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Deploy to Docker Host
+      uses: wshihadeh/docker-deployment-action@v1
+      with:
+        remote_docker_host: adam@84.201.158.229
+        ssh_private_key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
+        ssh_public_key: ${{ secrets.DOCKER_SSH_PUBLIC_KEY }}
+        deployment_mode: docker-compose
+        args: up -d
+        docker_prune: 'true'
