@@ -54,5 +54,5 @@ jobs:
             docker pull ghcr.io/${{ github.repository }}:latest
 
             # Run a new container from a new image
-            docker run -d -t ghcr.io/adamarutyunov/gendesign_course:latest
+            docker run -d -v /home/adam/gendesign_bot/.env:/.env -t ghcr.io/adamarutyunov/gendesign_course:latest
 
