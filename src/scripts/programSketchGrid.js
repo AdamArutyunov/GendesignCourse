@@ -1,5 +1,6 @@
 export const skGrid = (container, ff) => {
   return p => {
+    let frame = 0;
     let rowsNum;
     let colsNum;
     let stepX, stepY, padding;
@@ -39,9 +40,10 @@ export const skGrid = (container, ff) => {
 
     p.draw = () => {
       if (!ff.inViewport) return;
-      if (ff.mouseHover || p.frameCount < 3) {
+      if (ff.mouseHover || frame < 30) {
         p.background('white');
         drawCircles();
+        frame++;
       }
     };
   };
