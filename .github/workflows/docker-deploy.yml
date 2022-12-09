@@ -16,6 +16,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout
+      - uses: actions/checkout@v3
+
       - name: Logging into GitHub Container Registry
         uses: docker/login-action@v1
         with:
@@ -29,9 +32,9 @@ jobs:
       - name: Pushing Image to Github Container Registry
         uses: docker/build-push-action@v2
         with:
-          context: ./bot
+          context: .
           version: latest
-          file: ./bot/Dockerfile
+          file: Dockerfile
           push: true
           tags: ghcr.io/gendesign_course:latest
 
