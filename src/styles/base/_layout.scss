@@ -16,6 +16,10 @@ h6 {
   font-weight: normal !important;
 }
 
+h1 {
+  hyphens: auto;
+}
+
 h4 {
   font-variation-settings: 'wght' 600;
 }
@@ -84,8 +88,9 @@ a:hover {
 }
 
 .teachers {
-  display: flex;
-  gap: 4em;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 4em;
 
   margin: 3em 0;
 
@@ -99,39 +104,18 @@ a:hover {
     gap: 0.8em;
 
     border-radius: 1em;
-  }
-}
 
-.photo {
-  max-width: 200px;
-  min-width: 200px;
-  border-radius: 50%;
-  overflow: hidden;
-
-  box-shadow: 0 0 20px 10px #ddd;
-}
-
-.reviews {
-  display: flex;
-  gap: 1em;
-
-  p {
-    white-space: pre-line;
-  }
-
-  .review {
-    flex: 1 0 50%;
-
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-
-    &:first-child {
-      padding-right: 1.5em;
+    p {
+      white-space: pre-line;
     }
 
-    &:last-child {
-      padding-left: 1.5em;
+    .photo {
+      max-width: 200px;
+      min-width: 200px;
+      border-radius: 50%;
+      overflow: hidden;
+
+      box-shadow: 0 0 20px 10px #ddd;
     }
   }
 }
@@ -185,17 +169,16 @@ a:hover {
   background: #eee;
   padding: 1em 1.2em 2em 1.2em;
 
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   border-radius: 0.5em;
 
   .buy-caption {
-    width: 50%;
   }
 
   .buy-form {
     display: flex;
     flex-direction: column;
-    width: 50%;
     gap: 0.8em;
   }
 
@@ -253,5 +236,21 @@ b {
 
   .ids section {
     margin-top: calc(var(--ids__density) * 1.5em);
+  }
+
+  .teachers {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .buy-block {
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 1em;
+  }
+
+  .ids__wrapper {
+    width: 95%;
+    padding-left: 0;
+    padding-right: 0;
+    margin-top: 0.5em;
   }
 }

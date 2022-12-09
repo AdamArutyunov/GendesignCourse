@@ -72,9 +72,7 @@ function startAnimation(index) {
 let callback = function(entries) {
   for (let e of entries) {
     const index = e.target.id.at(-1) - 1;
-    console.log(e);
     if (e.isIntersecting) {
-      console.log(index);
       startAnimation(index);
     }
   }
