@@ -34,7 +34,6 @@ jobs:
         with:
           context: .
           version: latest
-          file: Dockerfile
           push: true
           tags: ghcr.io/gendesign_course:latest
 
