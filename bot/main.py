@@ -24,7 +24,7 @@ def send_invoice(update, context):
 
     chat_id = update.message.chat_id
     title = "Курс генеративного дизайна"
-    description = "**Доступ к курсу генеративного дизайна https://course.genclub.club.**\n\nПосле оплаты бот пришлёт ссылку на вступление в телеграм-чат. Если что-то пошло не так, напишите @adam_arutyunov."
+    description = "Доступ к курсу генеративного дизайна https://course.genclub.club.\n\nПосле оплаты бот пришлёт ссылку на вступление в телеграм-чат. Если что-то пошло не так, напишите @adam_arutyunov.\n\n "
     photo_url = 'https://course.genclub.club/images/og.jpg'
     payload = "Gendesign-Course-Payload"
 
@@ -39,7 +39,7 @@ def send_invoice(update, context):
 
     context.bot.send_invoice(
         chat_id, title, description, payload, PAYMENT_PROVIDER_TOKEN, currency, prices,
-        photo_url,
+        'start', photo_url,
         need_email=True,
     )
 
