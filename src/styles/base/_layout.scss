@@ -101,7 +101,7 @@ a:hover {
 
     display: flex;
     flex-direction: column;
-    gap: 0.8em;
+    gap: 1.4em;
 
     border-radius: 1em;
 
@@ -127,6 +127,8 @@ a:hover {
 
   $brr: 1em;
 
+  list-style: none;
+
   li {
     border-radius: $brr;
     aspect-ratio: 2 / 1;
@@ -141,15 +143,19 @@ a:hover {
     span {
       font-variation-settings: 'wght' 700;
       font-size: 1.2em;
+
+      text-shadow: 0 0 10px white;
     }
 
     .bg {
       font-family: 'PT Mono Bold';
       font-size: 0.8em;
-      color: #ddd;
+      color: white;
       font-weight: bold;
       white-space: pre-wrap;
       padding: 0.4em 0.7em;
+
+      transition: background 0.2s linear;
     }
 
     .bg,

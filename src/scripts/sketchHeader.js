@@ -16,6 +16,7 @@ export const skH = (container, ff) => {
     p.setup = () => {
       p.createCanvas(10, 50);
       p.stroke(200);
+      p.colorMode(p.HSL);
       p.strokeWeight(0.5);
       ff.resize();
       p.noFill();

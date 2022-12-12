@@ -50,6 +50,7 @@ function draw() {
 let animations = [];
 
 function startAnimation(index) {
+  console.log(index);
   if (!animations[index]) {
     animations[index] = [];
   }
@@ -64,7 +65,10 @@ function startAnimation(index) {
   element.textContent = '';
 
   for (let i = 0; i < text.length; i++) {
-    let timeout = setTimeout(() => (element.textContent += text[i]), 100 * i);
+    let timeout = setTimeout(() => {
+      element.textContent += text[i];
+    }, 100 * i);
+
     animations[index].push(timeout);
   }
 }
@@ -82,6 +86,20 @@ let options = {};
 
 let observer = new IntersectionObserver(callback, options);
 
-observer.observe(document.querySelector('#lesson-1'));
-observer.observe(document.querySelector('#lesson-2'));
-observer.observe(document.querySelector('#lesson-3'));
+let lessons = ['#lesson-1', '#lesson-2', '#lesson-3'].map(s =>
+  document.querySelector(s)
+);
+
+for (const lesson of lessons) {
+  observer.observe(lesson);
+
+  setInterval(
+    () => {
+      lesson.querySelector('.bg').style.backgroundColor = `hsl(${
+        window.colorShift
+      }deg 100% 90%)`;
+    },
+    200,
+    { immediate: true }
+  );
+}
