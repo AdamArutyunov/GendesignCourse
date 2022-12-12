@@ -95,9 +95,9 @@ for (const lesson of lessons) {
 
   setInterval(
     () => {
-      lesson.querySelector('.bg').style.backgroundColor = `hsl(${
-        window.colorShift
-      }deg 100% 90%)`;
+      let color = `hsl(${window.colorShift}deg 100% 90%)`;
+
+      lesson.querySelector('.bg').style.backgroundColor = color;
     },
     200,
     { immediate: true }

@@ -43,7 +43,7 @@ export const skFlow = (container, ff) => {
     p.draw = () => {
       p.push();
       p.colorMode(p.RGB);
-      p.background(255, 1);
+      p.background(255, 1.5);
 
       p.pop();
 
