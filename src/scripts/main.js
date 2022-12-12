@@ -11,6 +11,7 @@ import { skPolar } from './programSketchPolar';
 import './theory.js';
 
 let sks = [];
+window.colorShift = 0;
 
 let skOpts = [
   { sel: '#sketchHeader', f: skH },
@@ -43,3 +44,15 @@ for (let skOpt of skOpts) {
   let sk = new Sketch(skOpt);
   sks.push(sk);
 }
+
+let videoIframe = document.createElement('iframe');
+
+videoIframe.src =
+  'https://www.youtube.com/embed/QDrNo9XSoEw?autoplay=0&showinfo=0&showinfo=0&avatar=0&modestbranding=1';
+videoIframe.title = 'YouTube video player';
+videoIframe.frameborder = 0;
+videoIframe.allow =
+  'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+videoIframe.allowfullscreen = true;
+
+//document.querySelector('.video-placeholder').querySelector('.video').appendChild(videoIframe)

@@ -139,7 +139,8 @@ a:hover {
     transition: transform 0.2s ease;
 
     span {
-      text-shadow: 5px 5px 10px white;
+      font-variation-settings: 'wght' 700;
+      font-size: 1.2em;
     }
 
     .bg {

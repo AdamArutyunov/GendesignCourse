@@ -31,7 +31,7 @@ export const skPolar = (container, ff) => {
     p.draw = function() {
       if (!ff.inViewport) return;
       if (ff.mouseHover || frame < 200) {
-        myCircle(p.width / 2, p.height / 2, 100);
+        myCircle(p.width / 2, p.height / 2, 200);
         frame++;
       }
     };

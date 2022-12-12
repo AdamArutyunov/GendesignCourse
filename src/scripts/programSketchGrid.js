@@ -9,9 +9,10 @@ export const skGrid = (container, ff) => {
       p.createCanvas(400, 400);
       p.rectMode(p.CENTER);
       p.noStroke();
-      p.background(0);
       ff.resize();
       reset();
+
+      p.frameRate(20);
     };
     p.windowResized = () => {
       reset();
@@ -26,25 +27,29 @@ export const skGrid = (container, ff) => {
     }
 
     function drawCircles() {
+      p.colorMode(p.HSL);
+
       for (let xi = 0; xi < colsNum; xi++) {
         for (let yi = 0; yi < rowsNum; yi++) {
-          if (p.random() < 0.7) continue;
+          if (p.random() < 0.9) continue;
+          let randomColor = [(p.random() * 50 + colorShift) % 360, 100, 60];
           let x = stepX * xi + padding + stepX / 2;
           let y = stepY * yi + padding + stepY / 2;
-          let style_ = p.random(['solid', 'blur']);
-          p.fill(0, 20);
+          p.fill(randomColor);
           p.circle(x, y, stepX * 2);
         }
       }
+
+      p.colorMode(p.RGB);
     }
 
     p.draw = () => {
+      window.colorShift += 2;
+
       if (!ff.inViewport) return;
-      if (ff.mouseHover || frame < 30) {
-        p.background('white');
-        drawCircles();
-        frame++;
-      }
+      p.background(255, 98);
+      drawCircles();
+      frame++;
     };
   };
 };
