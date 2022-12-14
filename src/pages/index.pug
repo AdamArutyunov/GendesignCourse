@@ -1,7 +1,8 @@
 extends /layouts/main.pug
 
 block meta
-  +meta(title="Курс генеративного дизайна", description="Рисуем красивое с помощью кода", og-image="/images/og.png")
+  +meta(host='https://course.genclub.club' title="Курс генеративного дизайна", description="Рисуем красивое с помощью кода", og-image="/images/og.jpg")
+
 
 block content
   .ids__wrapper
@@ -10,7 +11,7 @@ block content
 
     section.promo-price
         .promo
-            | 11 янв — 3 фев 2023 | 7500 ₽ | 20 мест
+            | 11 янв — 3 фев 2023 | 7500&nbsp;₽ | 20&nbsp;мест
 
     section.half
 
@@ -73,8 +74,8 @@ block content
       p Мы проводим курс первый раз, поэтому написали отзывы сами.
       .ids__stack.XS
 
-      .reviews
-        .review
+      .teachers
+        .teacher
           .photo
                img(src='/images/teacher1.jpg')
 
@@ -87,7 +88,7 @@ block content
             
             А ещё генератив — это весело!»</i>
 
-        .review
+        .teacher
           .photo
                img(src='/images/teacher2.jpg')
 
@@ -125,7 +126,8 @@ block content
 
       ul
         li 
-          b Восемь вебинаров в Зуме по средам и пятницам 11 января по 3 февраля. Занятия начинаются в 18:00 по Москве;
+          b Восемь вебинаров в Зуме по средам и пятницам с 11 января по 3 февраля;
+        li Занятия начинаются в 18:00 по Москве. За час рассказываем самое важное, ещё полчаса отвечаем на вопросы и рассказываем дополнительное;
         li Записи занятий доступны всегда;
         li Обязательных домашек нет, да и вообще ничего обязательного нет, но желающим потренироваться мы дадим дополнительные задания;
         li Чат для общения и оргвопросов в Телеграме.
