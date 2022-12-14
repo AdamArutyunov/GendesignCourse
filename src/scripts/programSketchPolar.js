@@ -25,14 +25,14 @@ export const skPolar = (container, ff) => {
       p.createCanvas(700, 700);
       p.strokeWeight(0.2);
       p.stroke('silver');
-      ff.resize();
-      reset();
+      resize();
     };
     p.windowResized = () => {
-      reset();
+      resize();
     };
 
-    function reset() {
+    function resize() {
+      p.resizeCanvas(ff.container.offsetWidth, ff.container.offsetHeight);
       p.background(50);
     }
     p.draw = function() {
