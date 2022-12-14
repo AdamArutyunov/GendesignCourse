@@ -138,7 +138,7 @@ a:hover {
 .program {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 0.5em;
+  grid-gap: 0.3em;
 
   $brr: 1em;
 
@@ -257,7 +257,7 @@ b {
 @media (max-width: 767px) {
   .program {
     grid-template-columns: repeat(1, 1fr);
-    grid-gap: 1em;
+    grid-gap: 0.5em;
   }
 
   .ids section {
