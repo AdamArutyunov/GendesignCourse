@@ -4,7 +4,8 @@ export const skSubdiv = (container, ff) => {
     let i = 0;
     let inViewportPrev;
 
-    let reset = () => {
+    let resize = () => {
+      p.resizeCanvas(ff.container.offsetWidth, ff.container.offsetHeight);
       squares = [];
       squares.push([
         0,
@@ -21,12 +22,11 @@ export const skSubdiv = (container, ff) => {
     p.setup = () => {
       p.createCanvas(0, 0);
       p.noStroke();
-      ff.resize();
-      reset();
+      resize();
     };
 
     p.windowResized = () => {
-      reset();
+      resize();
     };
 
     function subdiv() {
@@ -70,7 +70,7 @@ export const skSubdiv = (container, ff) => {
       let t = p.frameCount;
       // p.circle(100,100,100 + p.sin(10+t))
       if (inViewportPrev === false && ff.inViewport === true) {
-        reset();
+        resize();
       }
       for (let i = 0; i < squares.length; i++) {
         let s = squares[i];

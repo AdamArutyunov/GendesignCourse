@@ -9,16 +9,16 @@ export const skGrid = (container, ff) => {
       p.createCanvas(400, 400);
       p.rectMode(p.CENTER);
       p.noStroke();
-      ff.resize();
-      reset();
+      resize();
 
       p.frameRate(60);
     };
     p.windowResized = () => {
-      reset();
+      resize();
     };
 
-    function reset() {
+    function resize() {
+      p.resizeCanvas(ff.container.offsetWidth, ff.container.offsetHeight);
       rowsNum = p.round(p.height / 30);
       colsNum = p.round(p.width / 30);
       padding = 0;

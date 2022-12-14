@@ -24,10 +24,8 @@ let skOpts = [
 
 function Sketch(skOpt) {
   let container = document.querySelector(skOpt.sel);
-  let ff = { inViewport: false, mouseHover: false };
-  ff.resize = () => {
-    p.resizeCanvas(container.offsetWidth, container.offsetHeight);
-  };
+  let ff = { inViewport: false, mouseHover: false, container };
+  ff.resize = () => {};
   let p = new p5(skOpt.f(container, ff), container);
   window.addEventListener('resize', ff.resize);
   let scroll = e => {

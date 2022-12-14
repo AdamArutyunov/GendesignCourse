@@ -18,13 +18,14 @@ export const skImg = (container, ff) => {
       p.noStroke();
       p.background(0);
       ff.resize();
-      reset();
+      resize();
     };
     p.windowResized = () => {
-      reset();
+      resize();
     };
 
-    function reset() {
+    function resize() {
+      p.resizeCanvas(ff.container.offsetWidth, ff.container.offsetHeight);
       N = p.floor(p.height / 30);
       M = p.floor(p.width / 30);
       rowsNum = p.round(p.height / 30);

@@ -8,16 +8,16 @@ export const skFlow = (container, ff) => {
       p.stroke(150);
       p.noFill();
 
-      ff.resize();
-      reset();
+      resize();
     };
     p.windowResized = () => {
-      reset();
+      resize();
     };
 
-    function reset() {
-      circles = [];
+    function resize() {
+      p.resizeCanvas(ff.container.offsetWidth, ff.container.offsetHeight);
       p.background('white');
+      circles = [];
 
       for (let i = 0; i < 100; i++) {
         p.colorMode(p.HSL);
