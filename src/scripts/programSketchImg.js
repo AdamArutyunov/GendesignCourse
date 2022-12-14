@@ -26,6 +26,7 @@ export const skImg = (container, ff) => {
 
     function resize() {
       p.resizeCanvas(ff.container.offsetWidth, ff.container.offsetHeight);
+      p.background('darkgrey');
       N = p.floor(p.height / 30);
       M = p.floor(p.width / 30);
       rowsNum = p.round(p.height / 30);
@@ -37,11 +38,15 @@ export const skImg = (container, ff) => {
 
     p.draw = () => {
       if (!ff.inViewport) return;
-      if (ff.mouseHover || frame < 3) {
-        p.background('white');
-        p.tint(255, 100);
+      if (true || ff.mouseHover || frame < 3) {
+        // p.background('white');
+        p.push();
+        p.colorMode(p.HSL);
+        let randomColor = [window.colorShift % 360, 100, 60, 100];
+        p.tint(...randomColor);
         for (let j = 0; j < N; j++) {
           for (let i = 0; i < M; i++) {
+            if (Math.random() < 0.98) continue;
             let img;
             if (p.random() < 0.5) {
               img = img1;
@@ -59,7 +64,8 @@ export const skImg = (container, ff) => {
             p.image(img, cx, cy, cw, ch, ix, iy, iw, ih);
           }
         }
-        p.filter(p.GRAY);
+        p.pop();
+        // p.filter(p.GRAY);
         frame++;
       }
     };
