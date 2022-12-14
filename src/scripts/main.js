@@ -27,6 +27,41 @@ function Sketch(skOpt) {
   let ff = { inViewport: false, mouseHover: false, container };
   ff.resize = () => {};
   let p = new p5(skOpt.f(container, ff), container);
+  ff.getColor = val => {
+    val -= val | 0;
+    // let colors = [
+    // 	"#1f244b",
+    // 	"#654053",
+    // 	"#a8605d",
+    // 	"#d1a67e",
+    // 	"#f6e79c",
+    // 	"#b6cf8e",
+    // 	"#60ae7b",
+    // 	"#3c6b64",
+    // ]
+    let colors = [
+      // "#73464c",
+      '#ab5675',
+      '#ee6a7c',
+      '#ffa7a5',
+      '#ffe07e',
+      '#ffe7d6',
+      '#72dcbb',
+      '#34acba',
+    ];
+    colors.push(colors[0]);
+    let iFloat = val * colors.length;
+    console.log('iFloat:', iFloat);
+    let i1 = iFloat | 0;
+    return p.color(colors[i1]);
+    // console.log('i1:',i1)
+    // let i2 = ((iFloat|0) + 1) % colors.length
+    // console.log('i2:',i2)
+    // let c1 = p.color(colors[i1])
+    // let c2 = p.color(colors[i2])
+    // console.log('iFloat%1:',iFloat%1)
+    // return p.color(p.lerpColor(c1,c2,iFloat%1))
+  };
   window.addEventListener('resize', ff.resize);
   let scroll = e => {
     let rect = container.getBoundingClientRect();

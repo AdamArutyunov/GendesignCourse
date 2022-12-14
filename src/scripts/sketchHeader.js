@@ -18,9 +18,17 @@ export const skH = (container, ff) => {
       p.stroke(200);
       p.colorMode(p.HSL);
       p.strokeWeight(0.5);
-      ff.resize();
       p.noFill();
+      resize();
     };
+
+    p.windowResized = () => {
+      resize();
+    };
+
+    function resize() {
+      p.resizeCanvas(ff.container.offsetWidth, ff.container.offsetHeight);
+    }
 
     p.draw = () => {
       if (!ff.inViewport) return;

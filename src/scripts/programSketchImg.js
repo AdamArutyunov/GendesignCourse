@@ -41,9 +41,11 @@ export const skImg = (container, ff) => {
       if (true || ff.mouseHover || frame < 3) {
         // p.background('white');
         p.push();
-        p.colorMode(p.HSL);
-        let randomColor = [window.colorShift % 360, 100, 60, 100];
-        p.tint(...randomColor);
+        // p.colorMode(p.HSL);
+        // let randomColor = [window.colorShift % 360, 100, 60, 100];
+        let randomColor = ff.getColor(window.colorShift / 360);
+        p.tint(190, 200);
+
         for (let j = 0; j < N; j++) {
           for (let i = 0; i < M; i++) {
             if (Math.random() < 0.98) continue;
@@ -65,7 +67,7 @@ export const skImg = (container, ff) => {
           }
         }
         p.pop();
-        // p.filter(p.GRAY);
+        p.filter(p.GRAY);
         frame++;
       }
     };

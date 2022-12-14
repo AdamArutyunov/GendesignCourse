@@ -10,8 +10,7 @@ export const skGrid = (container, ff) => {
       p.rectMode(p.CENTER);
       p.noStroke();
       resize();
-
-      p.frameRate(60);
+      // p.frameRate(60);
     };
     p.windowResized = () => {
       resize();
@@ -30,11 +29,13 @@ export const skGrid = (container, ff) => {
     function drawCircles() {
       p.colorMode(p.HSL);
 
+      p.randomSeed(100);
       for (let xi = 0; xi < colsNum; xi++) {
         for (let yi = 0; yi < rowsNum; yi++) {
-          if (p.random() < 0.97) continue;
+          if (Math.random() < 0.97) continue;
 
-          let randomColor = [(p.random() * 50 + colorShift) % 360, 100, 60];
+          // let randomColor = [(p.random() * 50 + colorShift) % 360, 100, 60];
+          let randomColor = ff.getColor(colorShift / 360 + p.random(0.3));
 
           let x = stepX * xi + padding + stepX / 2;
           let y = stepY * yi + padding + stepY / 2;

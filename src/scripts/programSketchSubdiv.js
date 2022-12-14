@@ -74,7 +74,8 @@ export const skSubdiv = (container, ff) => {
       }
       for (let i = 0; i < squares.length; i++) {
         let s = squares[i];
-        let randomColor = p.random(200, 255);
+        // let randomColor = p.random(200, 255);
+        let randomColor = ff.getColor(p.random());
         p.fill(randomColor);
         let x = s[0];
         let y = s[1];
