@@ -51,7 +51,7 @@ function Sketch(skOpt) {
     ];
     colors.push(colors[0]);
     let iFloat = val * colors.length;
-    console.log('iFloat:', iFloat);
+    // console.log('iFloat:', iFloat);
     let i1 = iFloat | 0;
     return p.color(colors[i1]);
     // console.log('i1:',i1)
@@ -62,14 +62,18 @@ function Sketch(skOpt) {
     // console.log('iFloat%1:',iFloat%1)
     // return p.color(p.lerpColor(c1,c2,iFloat%1))
   };
+
   window.addEventListener('resize', ff.resize);
   let scroll = e => {
     let rect = container.getBoundingClientRect();
     ff.inViewport = rect.top < window.innerHeight && rect.bottom > 0;
   };
+
   window.addEventListener('scroll', scroll);
+
   container.addEventListener('mouseover', _ => (ff.mouseHover = true));
   container.addEventListener('mouseout', _ => (ff.mouseHover = false));
+
   scroll();
 }
 

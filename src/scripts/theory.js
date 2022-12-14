@@ -50,7 +50,6 @@ function draw() {
 let animations = [];
 
 function startAnimation(index) {
-  console.log(index);
   if (!animations[index]) {
     animations[index] = [];
   }
