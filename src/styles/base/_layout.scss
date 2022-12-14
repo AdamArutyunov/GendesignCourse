@@ -159,7 +159,11 @@ a:hover {
       font-variation-settings: 'wght' 700;
       font-size: 1.2em;
 
-      text-shadow: 0 0 10px white;
+      text-shadow: 0 0 15px rgba(127, 127, 127, 0.4);
+    }
+
+    &#lesson-8 span {
+      color: white;
     }
 
     .bg {
