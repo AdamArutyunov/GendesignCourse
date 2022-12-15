@@ -23,6 +23,7 @@ export const skSubdiv = (container, ff) => {
       p.createCanvas(0, 0);
       p.noStroke();
       resize();
+      p.colorMode(p.HSL);
     };
 
     p.windowResized = () => {
@@ -65,6 +66,8 @@ export const skSubdiv = (container, ff) => {
     }
 
     p.draw = () => {
+      if (!ff.inViewport) return;
+
       p.randomSeed(100);
       // p.background('red')
       let t = p.frameCount;
@@ -75,7 +78,11 @@ export const skSubdiv = (container, ff) => {
       for (let i = 0; i < squares.length; i++) {
         let s = squares[i];
         // let randomColor = p.random(200, 255);
-        let randomColor = ff.getColor(p.random());
+        let randomColor = [
+          ((p.random() - 0.5) * 70 + 20 / s[2] + colorShift) % 360,
+          100,
+          60,
+        ];
         p.fill(randomColor);
         let x = s[0];
         let y = s[1];

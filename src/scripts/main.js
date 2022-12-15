@@ -82,14 +82,19 @@ for (let skOpt of skOpts) {
   sks.push(sk);
 }
 
-let videoIframe = document.createElement('iframe');
+setTimeout(() => {
+  let videoIframe = document.createElement('iframe');
 
-videoIframe.src =
-  'https://www.youtube.com/embed/QDrNo9XSoEw?autoplay=0&showinfo=0&showinfo=0&avatar=0&modestbranding=1';
-videoIframe.title = 'YouTube video player';
-videoIframe.frameborder = 0;
-videoIframe.allow =
-  'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-videoIframe.allowfullscreen = true;
+  videoIframe.src =
+    'https://www.youtube.com/embed/QDrNo9XSoEw?autoplay=0&showinfo=0&showinfo=0&avatar=0&modestbranding=1';
+  videoIframe.title = 'YouTube video player';
+  videoIframe.frameborder = 0;
+  videoIframe.allow =
+    'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+  videoIframe.allowfullscreen = true;
 
-//document.querySelector('.video-placeholder').querySelector('.video').appendChild(videoIframe)
+  document
+    .querySelector('.video-placeholder')
+    .querySelector('.video')
+    .appendChild(videoIframe);
+}, 100);

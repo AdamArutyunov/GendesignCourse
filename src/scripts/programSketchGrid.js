@@ -34,8 +34,7 @@ export const skGrid = (container, ff) => {
         for (let yi = 0; yi < rowsNum; yi++) {
           if (Math.random() < 0.97) continue;
 
-          // let randomColor = [(p.random() * 50 + colorShift) % 360, 100, 60];
-          let randomColor = ff.getColor(colorShift / 360 + p.random(0.3));
+          let randomColor = [(p.random() * 50 + colorShift) % 360, 100, 60];
 
           let x = stepX * xi + padding + stepX / 2;
           let y = stepY * yi + padding + stepY / 2;
@@ -49,7 +48,7 @@ export const skGrid = (container, ff) => {
     }
 
     p.draw = () => {
-      window.colorShift += 0.5;
+      window.colorShift += 0.7;
 
       if (!ff.inViewport) return;
 
