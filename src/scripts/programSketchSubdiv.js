@@ -30,17 +30,6 @@ export const skSubdiv = (container, ff) => {
 
     let resize = () => {
       p.resizeCanvas(ff.container.offsetWidth, ff.container.offsetHeight);
-      // squares = [];
-      // squares.push([
-      //   0,
-      //   0,
-      //   container.offsetWidth,
-      //   container.offsetHeight,
-      //   false /*not done*/,
-      // ]);
-      // subdiv();
-      // p.loop();
-      // p.background(200);
     };
 
     p.windowResized = () => {
@@ -56,6 +45,7 @@ export const skSubdiv = (container, ff) => {
     };
 
     p.draw = () => {
+      if (!ff.inViewport) return;
       // let randomColor = ff.getColor(colorShift / 360 );
       // randomColor.setAlpha(.2);
       // p.fill((colorShift) / 360, 100, 100, .2);

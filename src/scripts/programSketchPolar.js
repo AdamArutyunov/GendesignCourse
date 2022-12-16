@@ -6,7 +6,7 @@ export const skPolar = (container, ff) => {
       let r = 3;
 
       let angleStep = (0.02 * 2 * p.PI) / p.floor(r * 2);
-      let randomColor = ff.getColor(window.colorShift / 360);
+      let randomColor = [colorShift % 360, 100, 60];
       p.stroke(randomColor);
       p.fill(randomColor);
 

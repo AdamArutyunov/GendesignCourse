@@ -19,7 +19,7 @@ export const skFlow = (container, ff) => {
       p.background('white');
       circles = [];
 
-      for (let i = 0; i < 100; i++) {
+      for (let i = 0; i < 70; i++) {
         p.colorMode(p.HSL);
         // let randomColor = [(p.random() * 50 + colorShift) % 360, 100, 60];
         // let randomColor = ff.getColor(0.5)
@@ -33,7 +33,7 @@ export const skFlow = (container, ff) => {
       let s = 20;
 
       let dx = ((p.noise(x / s, y / s, 0) - 0.5) * k) / 2;
-      let dy = (p.noise(x / s, y / s, 1) - 1) * k;
+      let dy = (p.noise(x / s, y / s, 1) - 1) * k * 1.5;
       return [dx, dy];
     }
 
@@ -43,13 +43,14 @@ export const skFlow = (container, ff) => {
     }
 
     p.draw = () => {
+      if (!ff.inViewport) return;
+
       p.push();
       p.colorMode(p.RGB);
       p.background(255, 1.5);
 
       p.pop();
 
-      if (!ff.inViewport) return;
       if (true || ff.mouseHover || frame < 300) {
         p.noStroke();
 
@@ -57,18 +58,16 @@ export const skFlow = (container, ff) => {
           // if (c[3] <= 0) return;
 
           p.fill(c[2]);
-          p.circle(c[0], c[1], 15);
+          p.circle(c[0], c[1], 20);
 
           let vector = getVector(c[0], c[1]);
 
-          // let randomColor = [
-          //   (p.noise(c[0] / 200, c[1] / 200) * 50 + colorShift) % 360,
-          //   100,
-          //   60,
-          // ];
-          let randomColor = ff.getColor(
-            (colorShift + p.noise(c[0] / 200, c[1] / 200) * 50) / 360
-          );
+          let randomColor = [
+            (p.noise(c[0] / 200, c[1] / 200) * 50 + colorShift) % 360,
+            100,
+            60,
+          ];
+
           c[2] = randomColor;
 
           if (p.random() < 0.005) {

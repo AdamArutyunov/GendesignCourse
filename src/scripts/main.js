@@ -51,7 +51,7 @@ function Sketch(skOpt) {
     ];
     colors.push(colors[0]);
     let iFloat = val * colors.length;
-    console.log('iFloat:', iFloat);
+    // console.log('iFloat:', iFloat);
     let i1 = iFloat | 0;
     return p.color(colors[i1]);
     // console.log('i1:',i1)
@@ -62,14 +62,18 @@ function Sketch(skOpt) {
     // console.log('iFloat%1:',iFloat%1)
     // return p.color(p.lerpColor(c1,c2,iFloat%1))
   };
+
   window.addEventListener('resize', ff.resize);
   let scroll = e => {
     let rect = container.getBoundingClientRect();
     ff.inViewport = rect.top < window.innerHeight && rect.bottom > 0;
   };
+
   window.addEventListener('scroll', scroll);
+
   container.addEventListener('mouseover', _ => (ff.mouseHover = true));
   container.addEventListener('mouseout', _ => (ff.mouseHover = false));
+
   scroll();
 }
 
@@ -78,14 +82,19 @@ for (let skOpt of skOpts) {
   sks.push(sk);
 }
 
-let videoIframe = document.createElement('iframe');
+setTimeout(() => {
+  let videoIframe = document.createElement('iframe');
 
-videoIframe.src =
-  'https://www.youtube.com/embed/QDrNo9XSoEw?autoplay=0&showinfo=0&showinfo=0&avatar=0&modestbranding=1';
-videoIframe.title = 'YouTube video player';
-videoIframe.frameborder = 0;
-videoIframe.allow =
-  'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-videoIframe.allowfullscreen = true;
+  videoIframe.src =
+    'https://www.youtube.com/embed/QDrNo9XSoEw?autoplay=0&showinfo=0&showinfo=0&avatar=0&modestbranding=1';
+  videoIframe.title = 'YouTube video player';
+  videoIframe.frameborder = 0;
+  videoIframe.allow =
+    'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+  videoIframe.allowfullscreen = true;
 
-//document.querySelector('.video-placeholder').querySelector('.video').appendChild(videoIframe)
+  document
+    .querySelector('.video-placeholder')
+    .querySelector('.video')
+    .appendChild(videoIframe);
+}, 100);
