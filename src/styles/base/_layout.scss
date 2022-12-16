@@ -24,10 +24,6 @@ h4 {
   font-variation-settings: 'wght' 600;
 }
 
-body {
-  padding: 16px 20px;
-}
-
 main {
   position: relative;
 }
@@ -50,10 +46,28 @@ a:hover {
 }
 
 .ids__wrapper {
-  width: 90%;
   font-size: 1.2em;
   margin-top: 2em;
   padding-bottom: 4em;
+  width: 100%;
+
+  section {
+    padding: 0 5%;
+
+    &#reviews {
+      background: #f0f0f0;
+      padding-bottom: 3em;
+      padding-top: 3em;
+    }
+
+    &#program {
+    }
+
+    &#teachers .teachers {
+      margin-bottom: 3em;
+      margin-top: 3em;
+    }
+  }
 }
 
 .video-placeholder {
@@ -72,6 +86,9 @@ a:hover {
       left: 0;
       width: 100%;
       height: 100%;
+
+      background: #ddd;
+      border: none;
     }
   }
 
@@ -84,7 +101,7 @@ a:hover {
 
 .half {
   width: 100%;
-  max-width: 700px;
+  max-width: 800px;
 }
 
 .teachers {
@@ -92,7 +109,7 @@ a:hover {
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 4em;
 
-  margin: 3em 0;
+  margin-top: 2em;
 
   .teacher {
     flex-grow: 1;
@@ -101,7 +118,7 @@ a:hover {
 
     display: flex;
     flex-direction: column;
-    gap: 0.8em;
+    gap: 1.4em;
 
     border-radius: 1em;
 
@@ -115,7 +132,11 @@ a:hover {
       border-radius: 50%;
       overflow: hidden;
 
-      box-shadow: 0 0 20px 10px #ddd;
+      box-shadow: 0 0 30px 0px #bbb;
+    }
+
+    .caption {
+      font-size: 1.2em;
     }
   }
 }
@@ -123,9 +144,11 @@ a:hover {
 .program {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 0.5em;
+  grid-gap: 0.3em;
 
   $brr: 1em;
+
+  list-style: none;
 
   li {
     border-radius: $brr;
@@ -139,16 +162,26 @@ a:hover {
     transition: transform 0.2s ease;
 
     span {
-      text-shadow: 5px 5px 10px white;
+      font-variation-settings: 'wght' 700;
+      font-size: 1.2em;
+
+      text-shadow: 0 0 15px rgba(127, 127, 127, 0.4);
+    }
+
+    &#lesson-7 span,
+    &#lesson-8 span {
+      color: white;
     }
 
     .bg {
       font-family: 'PT Mono Bold';
       font-size: 0.8em;
-      color: #ddd;
+      color: white;
       font-weight: bold;
       white-space: pre-wrap;
       padding: 0.4em 0.7em;
+
+      transition: background 0.2s linear;
     }
 
     .bg,
@@ -231,7 +264,7 @@ b {
 @media (max-width: 767px) {
   .program {
     grid-template-columns: repeat(1, 1fr);
-    grid-gap: 1em;
+    grid-gap: 0.5em;
   }
 
   .ids section {
@@ -248,7 +281,6 @@ b {
   }
 
   .ids__wrapper {
-    width: 95%;
     padding-left: 0;
     padding-right: 0;
     margin-top: 0.5em;

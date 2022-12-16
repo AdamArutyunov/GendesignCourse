@@ -6,14 +6,15 @@ block meta
 
 block content
   .ids__wrapper
-    h1
-      | Курс генеративного дизайна
+    section
+      h1
+        | Курс генеративного дизайна
 
     section.promo-price
         .promo
             | 11 янв — 3 фев 2023 | 7500&nbsp;₽ | 20&nbsp;мест
 
-    section.half
+    section.half#header
 
       h3 Рисуем красивое с&nbsp;помощью&nbsp;кода
 
@@ -45,7 +46,32 @@ block content
         li Основ дизайна;
         li Сложной математики.
 
-    section
+    section#program
+      h2 Программа
+
+      ul.program
+        li#lesson-1 
+          span Теория. Язык программирования JavaScript. Отладка и консоль. Типы данных и арифметические операции. Переменные.
+          .bg
+        li#lesson-2
+          span Теория. Ветвления и логические операции. Циклы. Область видимости переменной.
+          .bg
+        li#lesson-3
+          span Теория. Функции, параметры и аргументы. Что такое p5. Как сохранять результат работы. Документация.
+          .bg
+        li#lesson-4 
+          span Практика. Сетка
+        li#lesson-5
+          span Практика. Флоу-филд
+        li#lesson-6
+          span Практика. Рекурсивное деление
+        li#lesson-7
+          span Практика. Работа с изображениями
+        li#lesson-8
+          span Практика. Полярные координаты
+
+
+    section#teachers
       h2 Кто здесь
 
       .teachers
@@ -64,11 +90,11 @@ block content
 
       .video-placeholder
         .video
-            iframe(src="https://www.youtube.com/embed/QDrNo9XSoEw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
+            //iframe(src="https://www.youtube.com/embed/QDrNo9XSoEw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
         .caption (Это нарезка из наших лекций в <a href='https://intuition.news/park2022'>Парке Интуиции</a>. Содержание будет другим, а стиль повествования — примерно таким же.)
 
 
-    section
+    section#reviews
       h2 Отзывы
 
       p Мы проводим курс первый раз, поэтому написали отзывы сами.
@@ -96,30 +122,6 @@ block content
             <b>Адам Арутюнов</b>, программист в Студии Артемия Лебедева, разработчик Николая Иронова:
 
             <i>«норм».</i>
-
-    section
-      h2 Программа
-
-      ol.program
-        li#lesson-1 
-          span Теория. Язык программирования JavaScript. Отладка и консоль. Типы данных и арифметические операции. Переменные.
-          .bg
-        li#lesson-2
-          span Теория. Ветвления и логические операции. Циклы. Область видимости переменной.
-          .bg
-        li#lesson-3
-          span Теория. Функции, параметры и аргументы. Что такое p5. Как сохранять результат работы. Документация.
-          .bg
-        li#lesson-4 
-          span Практика. Сетка.
-        li#lesson-5
-          span Практика. Флоу-филд.
-        li#lesson-6
-          span Практика. Рекурсивное деление.
-        li#lesson-7
-          span Практика. Работа с изображениями.
-        li#lesson-8
-          span Практика. Полярные координаты.
 
     section.half#format
       h2 Формат
