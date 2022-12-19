@@ -2,7 +2,6 @@ export const skPolar = (container, ff) => {
   return p => {
     let frame = 0;
     function myCircle(cx, cy, diameter) {
-      p.colorMode(p.HSL);
       let r = 3;
 
       let angleStep = (0.02 * 2 * p.PI) / p.floor(r * 2);
@@ -17,12 +16,11 @@ export const skPolar = (container, ff) => {
         let y = cy + p.cos(angle) * rCurrent;
         p.circle(x, y, 4);
       }
-
-      p.colorMode(p.RGB);
     }
 
     p.setup = function() {
       p.createCanvas(700, 700);
+      p.colorMode(p.HSL);
       p.strokeWeight(0.2);
       p.stroke('silver');
       resize();
@@ -39,8 +37,11 @@ export const skPolar = (container, ff) => {
       if (!ff.inViewport) return;
 
       if (true || ff.mouseHover || frame < 200) {
-        p.colorMode(p.RGB);
-        p.background(50, 2);
+        // p.colorMode(p.RGB);
+        // p.background(50, 2);
+        let randomColor = p.color((colorShift % 360) + 50, 100, 20);
+        randomColor.setAlpha(0.01);
+        p.background(randomColor);
         myCircle(p.width / 2, p.height / 2, 200);
         frame++;
       }

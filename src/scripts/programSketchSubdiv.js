@@ -10,7 +10,12 @@ export const skSubdiv = (container, ff) => {
 
     function grid(x, y, step, num) {
       let id = Math.floor(9999.99 + x * 99.9 - y * 999.9 + p.millis() / 100);
-      let randomColor = ff.getColor(colorShift / 360 + 0.1 * hash(id));
+      // let randomColor = ff.getColor((colorShift / 360)+.5);
+      let randomColor = p.color([
+        (p.random() * 100 + colorShift) % 360,
+        100,
+        100,
+      ]);
       randomColor.setAlpha(0.1);
       p.fill(randomColor);
       if (hash(id) > 0.5 || step > 150) {
