@@ -223,6 +223,12 @@ a:hover {
   .buy-action {
     display: flex;
     gap: 0.5em;
+
+    .buy-controls {
+      font-size: 1.5em;
+      font-variation-settings: 'wght' 600;
+      flex-grow: 1;
+    }
   }
 }
 
@@ -277,7 +283,7 @@ b {
 
   .buy-block {
     grid-template-columns: repeat(1, 1fr);
-    grid-gap: 1em;
+    grid-gap: 0.4em;
   }
 
   .ids__wrapper {
