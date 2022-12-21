@@ -271,6 +271,10 @@ b {
   .program {
     grid-template-columns: repeat(1, 1fr);
     grid-gap: 0.5em;
+
+    li {
+      aspect-ratio: 4 / 3;
+    }
   }
 
   .ids section {

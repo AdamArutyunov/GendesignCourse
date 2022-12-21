@@ -2,7 +2,7 @@ import os
 import time
 
 from dotenv import load_dotenv
-from telegram import LabeledPrice
+from telegram import LabeledPrice, Bot
 from telegram.ext import CommandHandler, MessageHandler, Updater, Dispatcher, PreCheckoutQueryHandler, Filters
 
 
@@ -11,10 +11,11 @@ load_dotenv()
 TOKEN = os.getenv('TOKEN')
 PAYMENT_PROVIDER_TOKEN = os.getenv('PROVIDER_TOKEN')
 PROMOCODE_PRICES = {
-    'park': 5500,
-    'test': 100,
+    'park_f8Ek39v1f': 5500,
+    'test_nv82REg9a': 100,
     None: 7500,
 }
+LOG_CHAT_ID = -1001665135759
 SUCCESS_LINK = 'https://t.me/+PsBgiiSkBuJhMGUy'
 
 
@@ -57,12 +58,21 @@ def precheckout_callback(update, context):
 
 def successful_payment_callback(update, context):
     """Confirms the successful payment."""
+    payment = update.message.successful_payment
+    user = update.message.from_user.username
+
+    message = '<b>🎉 Новый платёж!</b>\n\n'
+    message += f'Сумма: {payment.total_amount // 100} {payment.currency}\n'
+    message += f'Пользователь: @{user}\n'
+    message += f'Почта: {payment.order_info.email}'
 
     update.message.reply_text("Спасибо за покупку!\n\nСсылка на чат: " + SUCCESS_LINK)
 
-
+    bot.send_message(chat_id=LOG_CHAT_ID, text=message, parse_mode='HTML')
 
 if __name__ == '__main__':
+    bot = Bot(token=TOKEN)
+
     updater = Updater(TOKEN, use_context=True)
     dp = updater.dispatcher
 
