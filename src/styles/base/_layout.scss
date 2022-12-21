@@ -161,6 +161,10 @@ a:hover {
 
     transition: transform 0.2s ease;
 
+    &::before {
+      display: none;
+    }
+
     span {
       font-variation-settings: 'wght' 700;
       font-size: 1.2em;
