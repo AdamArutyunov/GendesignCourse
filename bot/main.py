@@ -64,7 +64,8 @@ def successful_payment_callback(update, context):
     message = '<b>🎉 Новый платёж!</b>\n\n'
     message += f'Сумма: {payment.total_amount // 100} {payment.currency}\n'
     message += f'Пользователь: @{user}\n'
-    message += f'Почта: {payment.order_info.email}'
+    message += f'Почта: {payment.order_info.email}\n'
+    message += f'ID транзакции в ЮКассе: {payment.provider_payment_charge_id}'
 
     update.message.reply_text("Спасибо за покупку!\n\nСсылка на чат: " + SUCCESS_LINK)
 
