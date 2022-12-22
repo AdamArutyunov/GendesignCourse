@@ -1,5 +1,6 @@
 import os
 import time
+import json
 
 from dotenv import load_dotenv
 from telegram import LabeledPrice, Bot
@@ -17,6 +18,80 @@ PROMOCODE_PRICES = {
 }
 LOG_CHAT_ID = -1001665135759
 SUCCESS_LINK = 'https://t.me/+PsBgiiSkBuJhMGUy'
+ADMINS = [115178271, 227496872]
+MODES = ['active', 'contact']
+
+data = None
+
+def save_data():
+    with open('data.json', 'w') as f:
+        json.dump(data, f)
+
+
+def load_data():
+    global data
+
+    try:
+        with open('data.json') as f:
+            data = json.load(f)
+    except Exception as f:
+        data = {'mode': 'active', 'subscribers': []}
+        save_data()
+
+
+def start(update, context):
+    if data['mode'] == 'active':
+        return send_invoice(update, context)
+
+    elif data['mode'] == 'contact':
+        return send_contact_prompt(update, context)
+
+
+def send_contact_prompt(update, context):
+    message = '''<b>Ой.</b>
+
+Мест на этот поток нет, всё раскупили. Чтобы в следующий раз мы позвали вас  п е р с о н а л ь н о, нажмите /sub. Можно будет отменить подписку на уведомления с помощью /unsub.
+
+А пока что приходите тусить <a href='https://t.me/gen_c'>в генклуб</a>! Ну, и на каналы <a href='https://t.me/ivandianov'>Ивана Дианова</a> и <a href='https://t.me/cdarr'>Адама Арутюнова</a> вы же подписались, да?'''
+
+    update.message.reply_text(message, parse_mode='HTML')
+
+
+def get_subscriber(chat_id):
+    subscribers = list(filter(lambda u: u['chat_id'] == chat_id, data['subscribers']))
+
+    if not subscribers:
+        return None
+
+    return subscribers[0]
+
+
+def subscribe(update, context):
+    chat_id = update.message.chat_id
+    username = update.message.from_user.username
+
+    subscriber = get_subscriber(chat_id)
+
+    if subscriber:
+        update.message.reply_text('Вы уже подписаны на обновления. Обязательно напишем, когда начнётся новый поток. Отписаться можно через /unsub.')
+    else:
+        data['subscribers'].append({'chat_id': chat_id, 'username': username})
+        save_data()
+
+        update.message.reply_text('Теперь вы подписаны на обновления. Обязательно напишем, когда начнётся новый поток. Отписаться можно через /unsub.')
+
+
+def unsubscribe(update, context):
+    chat_id = update.message.chat_id
+    subscriber = get_subscriber(chat_id)
+
+    if subscriber:
+        data['subscribers'].remove(subscriber)
+        save_data()
+
+        update.message.reply_text('Отписали вас от обновлений о новых наборах на курс. Подписаться обратно можно через /sub.')
+    else:
+        update.message.reply_text('Вы не подписаны на обновления о новых наборах на курс. Подписаться можно через /sub.')
 
 
 def send_invoice(update, context):
@@ -71,7 +146,28 @@ def successful_payment_callback(update, context):
 
     bot.send_message(chat_id=LOG_CHAT_ID, text=message, parse_mode='HTML')
 
+
+def change_mode(update, context):
+    chat_id = update.message.chat_id
+
+    if chat_id not in ADMINS:
+        update.message.reply_text('Только администраторы могут изменять режим бота.')
+        return
+
+    
+    args = context.args
+    if not args or not args[0] or args[0] not in MODES:
+        return update.message.reply_text('Доступные режимы: ' + ', '.join(MODES) + '.')
+
+    data['mode'] = args[0]
+    save_data()
+
+    update.message.reply_text('Режим бота изменён на ' + args[0] + '.')
+
+
 if __name__ == '__main__':
+    load_data()
+
     bot = Bot(token=TOKEN)
 
     updater = Updater(TOKEN, use_context=True)
@@ -79,7 +175,10 @@ if __name__ == '__main__':
 
     print('Bot initialized.')
 
-    dp.add_handler(CommandHandler("start", send_invoice, pass_args=True))
+    dp.add_handler(CommandHandler("start", start, pass_args=True))
+    dp.add_handler(CommandHandler("mode", change_mode, pass_args=True))
+    dp.add_handler(CommandHandler("sub", subscribe))
+    dp.add_handler(CommandHandler("unsub", unsubscribe))
 
     dp.add_handler(PreCheckoutQueryHandler(precheckout_callback))
 
