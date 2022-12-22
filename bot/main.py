@@ -94,6 +94,20 @@ def unsubscribe(update, context):
         update.message.reply_text('Вы не подписаны на обновления о новых наборах на курс. Подписаться можно через /sub.')
 
 
+def print_subscribers(update, context):
+    if update.message.chat_id not in ADMINS:
+        return update.message.reply_text('Подписчиков могут увидеть только администраторы.')
+
+
+    subscribers = data['subscribers']
+
+    out = '<b>Подписались на обновления:</b>\n\n'
+    for subscriber in subscribers:
+        out += f'@{subscriber["username"]}\n'
+
+    update.message.reply_text(out, parse_mode='HTML')
+
+
 def send_invoice(update, context):
     """Sends an invoice without shipping-payment."""
     args = context.args
@@ -179,6 +193,7 @@ if __name__ == '__main__':
     dp.add_handler(CommandHandler("mode", change_mode, pass_args=True))
     dp.add_handler(CommandHandler("sub", subscribe))
     dp.add_handler(CommandHandler("unsub", unsubscribe))
+    dp.add_handler(CommandHandler("subscribers", print_subscribers))
 
     dp.add_handler(PreCheckoutQueryHandler(precheckout_callback))
 
