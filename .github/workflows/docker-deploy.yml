@@ -51,8 +51,8 @@ jobs:
             docker login https://ghcr.io -u ${{ github.repository_owner }} -p ${{ secrets.GH_TOKEN }}
 
             # Pull the Docker Image 
-            docker pull ghcr.io/${{ github.repository }}:latest
+            docker pull ghcr.io/adamarutyunov/gendesign_course:latest
 
             # Run a new container from a new image
-            docker run -d -v /home/adam/gendesign_bot/.env:/.env -t ghcr.io/adamarutyunov/gendesign_course:latest
+            docker run -d -v /home/adam/gendesign_bot/.env:/.env -v /home/adam/gendesign_bot/data.json:/data.json -t ghcr.io/adamarutyunov/gendesign_course:latest
 
