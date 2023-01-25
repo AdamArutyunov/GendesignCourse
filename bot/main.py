@@ -105,6 +105,8 @@ def print_subscribers(update, context):
     for subscriber in subscribers:
         out += f'@{subscriber["username"]}\n'
 
+    out += f'\n<b>Всего подписчиков:</b> {len(subscribers)}.'
+
     update.message.reply_text(out, parse_mode='HTML')
 
 
