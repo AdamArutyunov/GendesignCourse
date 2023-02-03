@@ -98,3 +98,14 @@ setTimeout(() => {
     .querySelector('.video')
     .appendChild(videoIframe);
 }, 100);
+
+function moveBackground(e) {
+  let scroll = window.scrollY;
+  const header = document.querySelector('#sketchHeader');
+
+  let progress = scroll / (document.body.scrollHeight - window.innerHeight);
+  let translate = -progress * 50;
+  header.style.transform = `translateY(${translate}%)`;
+}
+
+window.addEventListener('scroll', moveBackground);
