@@ -47,6 +47,10 @@ function draw() {
 	drawCircle(x, y, 10, randomColor)
 }`;
 
+const lesson4 = '';
+
+const lessonIds = ['lesson-js'];
+
 let animations = [];
 
 function startAnimation(index) {
@@ -57,10 +61,8 @@ function startAnimation(index) {
   animations[index].map(clearTimeout);
   animations[index] = [];
 
-  const text = [lesson1, lesson2, lesson3][index];
-  let element = document
-    .querySelector('#lesson-' + (index + 1))
-    .querySelector('.bg');
+  const text = [lesson1, lesson2, lesson3, lesson4][index];
+  let element = lessons[index].querySelector('.bg');
   element.textContent = '';
 
   for (let i = 0; i < text.length; i++) {
@@ -74,7 +76,7 @@ function startAnimation(index) {
 
 let callback = function(entries) {
   for (let e of entries) {
-    const index = e.target.id.at(-1) - 1;
+    const index = lessonIds.indexOf(e.target.id);
     if (e.isIntersecting) {
       startAnimation(index);
     }
@@ -85,9 +87,7 @@ let options = {};
 
 let observer = new IntersectionObserver(callback, options);
 
-let lessons = ['#lesson-1', '#lesson-2', '#lesson-3'].map(s =>
-  document.querySelector(s)
-);
+let lessons = lessonIds.map(s => document.getElementById(s));
 
 for (const lesson of lessons) {
   observer.observe(lesson);

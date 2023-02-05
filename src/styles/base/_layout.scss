@@ -152,7 +152,7 @@ a:hover {
 
   li {
     border-radius: $brr;
-    aspect-ratio: 2 / 1;
+    aspect-ratio: 3 / 2;
     margin: 0 !important;
     padding: 1em 1em;
     //border: 1px solid #ddd;
@@ -172,8 +172,8 @@ a:hover {
       text-shadow: 0 0 15px rgba(127, 127, 127, 0.4);
     }
 
-    &#lesson-7 span,
-    &#lesson-8 span {
+    &#lesson-img span,
+    &#lesson-polar span {
       color: white;
     }
 

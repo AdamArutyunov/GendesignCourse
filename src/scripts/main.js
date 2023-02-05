@@ -15,11 +15,11 @@ window.colorShift = 0;
 
 let skOpts = [
   { sel: '#sketchHeader', f: skH },
-  { sel: '#lesson-4', f: skGrid },
-  { sel: '#lesson-5', f: skFlow },
-  { sel: '#lesson-6', f: skSubdiv },
-  { sel: '#lesson-7', f: skImg },
-  { sel: '#lesson-8', f: skPolar },
+  { sel: '#lesson-grid', f: skGrid },
+  { sel: '#lesson-ff', f: skFlow },
+  { sel: '#lesson-sd', f: skSubdiv },
+  { sel: '#lesson-img', f: skImg },
+  { sel: '#lesson-polar', f: skPolar },
 ];
 
 function Sketch(skOpt) {
