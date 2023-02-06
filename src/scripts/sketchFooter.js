@@ -26,6 +26,8 @@ export const skF = (container, ff) => {
     }
 
     p.draw = () => {
+      if (!ff.inViewport) return;
+
       let cellSize = [p.width / GRID_COUNT, p.height / GRID_COUNT];
       p.background('rgba(255, 255, 255, 0.2)');
       let wiggleArray = [];

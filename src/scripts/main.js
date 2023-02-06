@@ -100,3 +100,11 @@ setTimeout(() => {
     .querySelector('.video')
     .appendChild(videoIframe);
 }, 100);
+
+document.querySelectorAll('.dotted').forEach(el => {
+  el.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(el.href.split('/').at(-1));
+    target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
