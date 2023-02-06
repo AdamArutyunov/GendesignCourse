@@ -3,6 +3,7 @@
 import p5 from 'p5';
 import '../styles/main.scss';
 import { skH } from './sketchHeader';
+import { skF } from './sketchFooter';
 import { skGrid } from './programSketchGrid';
 import { skFlow } from './programSketchFlow';
 import { skImg } from './programSketchImg';
@@ -20,6 +21,7 @@ let skOpts = [
   { sel: '#lesson-sd', f: skSubdiv },
   { sel: '#lesson-img', f: skImg },
   { sel: '#lesson-polar', f: skPolar },
+  { sel: '#sketchFooter', f: skF },
 ];
 
 function Sketch(skOpt) {
