@@ -12,12 +12,12 @@ load_dotenv()
 TOKEN = os.getenv('TOKEN')
 PAYMENT_PROVIDER_TOKEN = os.getenv('PROVIDER_TOKEN')
 PROMOCODE_PRICES = {
-    'park_f8Ek39v1f': 5500,
+    'park_f8Ek39v1f': 10500,
     'test_nv82REg9a': 100,
-    None: 7500,
+    None: 12500,
 }
 LOG_CHAT_ID = -1001665135759
-SUCCESS_LINK = 'https://t.me/+PsBgiiSkBuJhMGUy'
+SUCCESS_LINK = 'https://t.me/+zx93hyfqrjg3ODBi'
 ADMINS = [115178271, 227496872]
 MODES = ['active', 'contact']
 
@@ -141,7 +141,7 @@ def precheckout_callback(update, context):
 
     query = update.pre_checkout_query
 
-    if query.invoice_payload != "Gendesign-Course-Payload":
+    if data['mode'] != 'active' or query.invoice_payload != "Gendesign-Course-Payload":
         query.answer(ok=False, error_message="Something went wrong...")
     else:
         query.answer(ok=True)
