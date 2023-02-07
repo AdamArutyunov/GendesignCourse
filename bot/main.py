@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from telegram import LabeledPrice, Bot
 from telegram.ext import CommandHandler, MessageHandler, Updater, Dispatcher, PreCheckoutQueryHandler, Filters
 
+from permissions import admin_required
 
 load_dotenv()
 
@@ -18,7 +19,6 @@ PROMOCODE_PRICES = {
 }
 LOG_CHAT_ID = -1001665135759
 SUCCESS_LINK = 'https://t.me/+zx93hyfqrjg3ODBi'
-ADMINS = [115178271, 227496872]
 MODES = ['active', 'contact']
 
 data = None
@@ -94,11 +94,8 @@ def unsubscribe(update, context):
         update.message.reply_text('Вы не подписаны на обновления о новых наборах на курс. Подписаться можно через /sub.')
 
 
+@admin_required
 def print_subscribers(update, context):
-    if update.message.chat_id not in ADMINS:
-        return update.message.reply_text('Подписчиков могут увидеть только администраторы.')
-
-
     subscribers = data['subscribers']
 
     out = '<b>Подписались на обновления:</b>\n\n'
@@ -108,6 +105,49 @@ def print_subscribers(update, context):
     out += f'\n<b>Всего подписчиков:</b> {len(subscribers)}.'
 
     update.message.reply_text(out, parse_mode='HTML')
+
+
+@admin_required
+def print_mailing(update, context):
+    filename = context.args[0]
+
+    try:
+        with open(os.path.join(os.getcwd(), 'mailings/', filename)) as f:
+            text = f.read()
+            update.message.reply_text(text, parse_mode='HTML')
+
+    except Exception as e:
+        update.message.reply_text(f'Ошибка: {e}')
+
+
+@admin_required
+def send_mailing(update, context):
+    filename = context.args[0]
+    confirmation = context.args[1]
+    subscribers = data['subscribers']
+
+    if confirmation != 'y':
+        return update.message.reply_text('No confirmation.')
+
+    update.message.reply_text('Текст рассылки:')
+    print_mailing(update, context)
+
+    with open('mailings/' + filename) as f:
+        text = f.read()
+
+    update.message.reply_text('Начинаю рассылку.')
+
+    for subscriber in subscribers:
+        update.message.reply_text(f'Отправляю сообщение пользователю {subscriber["username"]} (ID диалога {subscriber["chat_id"]})')
+
+        try:
+            bot.send_message(chat_id=subscriber["chat_id"], text=text, parse_mode='HTML')
+            update.message.reply_text('Сообщение отправлено.')
+        except Exception as e:
+            update.message.reply_text('Не удалось отправить сообщение: ' + str(e))
+
+    update.message.reply_text('Рассылка завершена.')
+
 
 
 def send_invoice(update, context):
@@ -163,14 +203,8 @@ def successful_payment_callback(update, context):
     bot.send_message(chat_id=LOG_CHAT_ID, text=message, parse_mode='HTML')
 
 
+@admin_required
 def change_mode(update, context):
-    chat_id = update.message.chat_id
-
-    if chat_id not in ADMINS:
-        update.message.reply_text('Только администраторы могут изменять режим бота.')
-        return
-
-    
     args = context.args
     if not args or not args[0] or args[0] not in MODES:
         return update.message.reply_text('Доступные режимы: ' + ', '.join(MODES) + '.')
@@ -196,6 +230,9 @@ if __name__ == '__main__':
     dp.add_handler(CommandHandler("sub", subscribe))
     dp.add_handler(CommandHandler("unsub", unsubscribe))
     dp.add_handler(CommandHandler("subscribers", print_subscribers))
+
+    dp.add_handler(CommandHandler("print", print_mailing, pass_args=True))
+    dp.add_handler(CommandHandler("send", send_mailing, pass_args=True))
 
     dp.add_handler(PreCheckoutQueryHandler(precheckout_callback))
 
