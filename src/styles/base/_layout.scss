@@ -24,17 +24,31 @@ h4 {
   font-variation-settings: 'wght' 600;
 }
 
-body {
-  padding: 16px 20px;
-}
-
 main {
   position: relative;
+}
+
+p.small {
+  font-size: 0.7em;
+  opacity: 0.5;
+  padding-top: 0.2em;
 }
 
 a:hover {
   color: red !important;
   border-color: rgba(255, 0, 0, 0.5) !important;
+}
+
+.promo-price {
+  display: flex;
+  gap: 2em;
+  align-items: center;
+
+  a.dotted {
+    border-bottom-style: dotted;
+    font-size: 1.5em;
+    color: black;
+  }
 }
 
 .promo {
@@ -50,10 +64,32 @@ a:hover {
 }
 
 .ids__wrapper {
-  width: 90%;
   font-size: 1.2em;
   margin-top: 2em;
   padding-bottom: 4em;
+  width: 100%;
+
+  section {
+    padding: 0 5%;
+
+    &#reviews {
+      background: #f0f0f0;
+      padding-bottom: 3em;
+      padding-top: 3em;
+    }
+
+    &#program {
+    }
+
+    &#teachers .teachers {
+      margin-bottom: 3em;
+      margin-top: 3em;
+    }
+
+    &#buy {
+      position: relative;
+    }
+  }
 }
 
 .video-placeholder {
@@ -72,6 +108,9 @@ a:hover {
       left: 0;
       width: 100%;
       height: 100%;
+
+      background: #ddd;
+      border: none;
     }
   }
 
@@ -84,7 +123,7 @@ a:hover {
 
 .half {
   width: 100%;
-  max-width: 700px;
+  max-width: 800px;
 }
 
 .teachers {
@@ -92,7 +131,7 @@ a:hover {
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 4em;
 
-  margin: 3em 0;
+  margin-top: 2em;
 
   .teacher {
     flex-grow: 1;
@@ -101,7 +140,7 @@ a:hover {
 
     display: flex;
     flex-direction: column;
-    gap: 0.8em;
+    gap: 1.4em;
 
     border-radius: 1em;
 
@@ -115,7 +154,11 @@ a:hover {
       border-radius: 50%;
       overflow: hidden;
 
-      box-shadow: 0 0 20px 10px #ddd;
+      box-shadow: 0 0 30px 0px #bbb;
+    }
+
+    .caption {
+      font-size: 1.2em;
     }
   }
 }
@@ -123,13 +166,15 @@ a:hover {
 .program {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 0.5em;
+  grid-gap: 0.3em;
 
   $brr: 1em;
 
+  list-style: none;
+
   li {
     border-radius: $brr;
-    aspect-ratio: 2 / 1;
+    aspect-ratio: 3 / 2;
     margin: 0 !important;
     padding: 1em 1em;
     //border: 1px solid #ddd;
@@ -138,17 +183,31 @@ a:hover {
 
     transition: transform 0.2s ease;
 
+    &::before {
+      display: none;
+    }
+
     span {
-      text-shadow: 5px 5px 10px white;
+      font-variation-settings: 'wght' 700;
+      font-size: 1.2em;
+
+      text-shadow: 0 0 15px rgba(127, 127, 127, 0.4);
+    }
+
+    &#lesson-img span,
+    &#lesson-polar span {
+      color: white;
     }
 
     .bg {
       font-family: 'PT Mono Bold';
       font-size: 0.8em;
-      color: #ddd;
+      color: white;
       font-weight: bold;
       white-space: pre-wrap;
       padding: 0.4em 0.7em;
+
+      transition: background 0.2s linear;
     }
 
     .bg,
@@ -165,15 +224,32 @@ a:hover {
   }
 }
 
+#sketchFooter {
+  width: 20em;
+  aspect-ratio: 1;
+  position: absolute;
+  top: -2em;
+  left: 1em;
+  z-index: -1;
+  opacity: 0.6;
+
+  border-radius: 50%;
+  overflow: hidden;
+}
+
 .buy-block {
-  background: #eee;
-  padding: 1em 1.2em 2em 1.2em;
+  background: rgba(200, 200, 200, 0.1);
+  backdrop-filter: blur(1px);
+  padding: 1em 1.2em 1.5em 1.2em;
 
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   border-radius: 0.5em;
 
   .buy-caption {
+    h3 {
+      font-size: 2em;
+    }
   }
 
   .buy-form {
@@ -184,12 +260,17 @@ a:hover {
 
   .buy-disclaimer {
     font-size: 0.9em;
-    color: #888;
   }
 
   .buy-action {
     display: flex;
     gap: 0.5em;
+
+    .buy-controls {
+      font-size: 1.5em;
+      font-variation-settings: 'wght' 600;
+      flex-grow: 1;
+    }
   }
 }
 
@@ -231,7 +312,11 @@ b {
 @media (max-width: 767px) {
   .program {
     grid-template-columns: repeat(1, 1fr);
-    grid-gap: 1em;
+    grid-gap: 0.5em;
+
+    li {
+      aspect-ratio: 4 / 3;
+    }
   }
 
   .ids section {
@@ -244,13 +329,17 @@ b {
 
   .buy-block {
     grid-template-columns: repeat(1, 1fr);
-    grid-gap: 1em;
+    grid-gap: 0.4em;
   }
 
   .ids__wrapper {
-    width: 95%;
     padding-left: 0;
     padding-right: 0;
     margin-top: 0.5em;
+  }
+
+  #sketchFooter {
+    left: -2em;
+    top: -2em;
   }
 }

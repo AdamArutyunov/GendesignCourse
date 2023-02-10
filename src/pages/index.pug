@@ -6,14 +6,17 @@ block meta
 
 block content
   .ids__wrapper
-    h1
-      | Курс генеративного дизайна
+    section
+      h1
+        | Курс генеративного дизайна
 
     section.promo-price
         .promo
-            | 11 янв — 3 фев 2023 | 7500&nbsp;₽ | 20&nbsp;мест
+            | 6 — 24 марта | 12&#8239;500 ₽ | 32 места
+        .promo-action
+            a(href='#buy' class='dotted') Записаться
 
-    section.half
+    section.half#header
 
       h3 Рисуем красивое с&nbsp;помощью&nbsp;кода
 
@@ -29,10 +32,10 @@ block content
     section.half
       h3 Что будет
 
-      p Вы научитесь генерировать картинки, которые можно использовать в дизайне, как только фантазии хватит. Для этого изучим:
+      p Вы научитесь генерировать картинки, которые можно использовать в своих дизайнах, как только фантазии хватит. Для этого изучим:
 
       ul
-        li Основы языка программирования JavaScript с нуля — мы расскажем только тот минимум, который нужен для практики;
+        li Основы языка программирования JavaScript с нуля — расскажем только тот минимум, который нужен для практики;
         li Рисование с помощью библиотеки p5.js;
         li Пять классических алгоритмов генеративного арта.
 
@@ -41,11 +44,40 @@ block content
 
       ul
         li Вёрстки, HTML и CSS;
-        li Фронтенд-разработки;
         li Основ дизайна;
-        li Сложной математики.
+        li Нейросетей.
 
-    section
+      p После курса не получится устроиться на работу генеративным дизайнером, потому что первая такая вакансия появится только через несколько лет. Зато мы помогаем освоить новый инструмент, расширить свои представления о дизайне, перестать бояться программирования и получать фан.
+
+    section#program
+      h2 Программа
+
+      ul.program
+        li#lesson-js
+          span Четыре теоретических занятия. Изучаем JS с нуля. Четвёртое занятие — переходное от теории к практике.
+          .bg
+        //li#lesson-if
+          span Теория. Ветвления и логические операции. Циклы. Область видимости переменной.
+          .bg
+        //li#lesson-array
+          span Теория. Массивы. Функции, параметры и аргументы.         
+          .bg
+        //li#lesson-p5
+          span Теория-практика. Что такое p5. Как сохранять результат работы. Документация.
+          .bg
+        li#lesson-grid
+          span Практика. Сетка
+        li#lesson-ff
+          span Практика. Флоу-филд
+        li#lesson-sd
+          span Практика. Рекурсивное деление
+        li#lesson-img
+          span Практика. Работа с изображениями
+        li#lesson-polar
+          span Практика. Полярные координаты
+
+
+    section#teachers
       h2 Кто здесь
 
       .teachers
@@ -57,18 +89,18 @@ block content
         .teacher
             .photo
                img(src='/images/teacher2.jpg')
-            .caption <b>Адам Арутюнов,</b> программист в <a href='https://design.ru'>Студии Артемия Лебедева</a>, разработчик <a href='https://artlebedev.ru/ironov/2'>Николая Иронова</a>.
+            .caption <b>Адам Арутюнов,</b> программист в <a href='https://design.ru/adamarutyunov'>Студии Артемия Лебедева</a>, разработчик <a href='https://artlebedev.ru/ironov/2'>Николая Иронова</a>.
 
     section.half
       p Вот как примерно всё будет выглядеть:
 
       .video-placeholder
         .video
-            iframe(src="https://www.youtube.com/embed/QDrNo9XSoEw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
+            //iframe(src="https://www.youtube.com/embed/QDrNo9XSoEw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
         .caption (Это нарезка из наших лекций в <a href='https://intuition.news/park2022'>Парке Интуиции</a>. Содержание будет другим, а стиль повествования — примерно таким же.)
 
 
-    section
+    section#reviews
       h2 Отзывы
 
       p Мы проводим курс первый раз, поэтому написали отзывы сами.
@@ -97,59 +129,43 @@ block content
 
             <i>«норм».</i>
 
-    section
-      h2 Программа
-
-      ol.program
-        li#lesson-1 
-          span Теория. Язык программирования JavaScript. Отладка и консоль. Типы данных и арифметические операции. Переменные.
-          .bg
-        li#lesson-2
-          span Теория. Ветвления и логические операции. Циклы. Область видимости переменной.
-          .bg
-        li#lesson-3
-          span Теория. Функции, параметры и аргументы. Что такое p5. Как сохранять результат работы. Документация.
-          .bg
-        li#lesson-4 
-          span Практика. Сетка.
-        li#lesson-5
-          span Практика. Флоу-филд.
-        li#lesson-6
-          span Практика. Рекурсивное деление.
-        li#lesson-7
-          span Практика. Работа с изображениями.
-        li#lesson-8
-          span Практика. Полярные координаты.
-
     section.half#format
       h2 Формат
 
       ul
         li 
-          b Восемь вебинаров в Зуме по средам и пятницам с 11 января по 3 февраля;
-        li Занятия начинаются в 18:00 по Москве. За час рассказываем самое важное, ещё полчаса отвечаем на вопросы и рассказываем дополнительное;
+          b Девять вебинаров в Зуме по понедельникам, средам и пятницам с 6 по 24 марта;
+        li Занятия начинаются в 17:00 по Москве. Занятие длится полтора часа;
         li Записи занятий доступны всегда;
         li Обязательных домашек нет, да и вообще ничего обязательного нет, но желающим потренироваться мы дадим дополнительные задания;
         li Чат для общения и оргвопросов в Телеграме.
 
       p Для работы нужен компьютер — с телефона или планшета будет неудобно.
 
-    section.buy
+    section#buy
+      #sketchFooter(tooltip='“Rainbow tri-grid” by @polnodobra')
+
       .buy-block
         .buy-caption
           h3 Записаться на курс
 
         .buy-form
           .buy-action
-            input(type='email' placeholder='Электропочта')
+            //input(type='email' placeholder='Электропочта')
 
             .buy-controls
-              button(disabled) Записаться
+              a(href='https://t.me/gendesign_bot')
+                button() Заплатить 12&#8239;500 ₽
 
           .buy-disclaimer
-            p(style='color: #880000') (Запись откроется чуть позже.)
+            //p(style='color: #880000') (Запись откроется чуть позже.)
             p.
-              На почту придёт ссылка для оплаты, и в течение 24 часов после оплаты мы пришлём ссылку в телеграм-чат.
+                Оплата через телеграм-бота (это встроенная функция самого Телеграма). После оплаты бот пришлёт ссылку на вступление в чат. 
+            p.
+                Принимаются российские карты. Если такой нет — <a href='https://t.me/adam_arutyunov'>пишите</a>, что-нибудь придумаем.
 
             p.
               Нажимая эту кнопку, вы соглашаетесь <a href='https://messy-emperor-647.notion.site/7cec5906c1914a8ebd98dee051c027a7'>с офертой</a> и <a href='https://messy-emperor-647.notion.site/cdf7ee711a5c41518a4ad3390935f34b'>политикой обработки персональных данных</a>.
+
+            p.small
+              | ← “Rainbow tri-grid” by @polnodobra
