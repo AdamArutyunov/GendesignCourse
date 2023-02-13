@@ -8,7 +8,8 @@ import { skGrid } from './programSketchGrid';
 import { skFlow } from './programSketchFlow';
 import { skImg } from './programSketchImg';
 import { skSubdiv } from './programSketchSubdiv';
-import { skPolar } from './programSketchPolar';
+// import { skPolar } from './programSketchPolar';
+import { skCA } from './programSketchCA';
 import './theory.js';
 
 let sks = [];
@@ -20,7 +21,7 @@ let skOpts = [
   { sel: '#lesson-ff', f: skFlow },
   { sel: '#lesson-sd', f: skSubdiv },
   { sel: '#lesson-img', f: skImg },
-  { sel: '#lesson-polar', f: skPolar },
+  { sel: '#lesson-ca', f: skCA },
   { sel: '#sketchFooter', f: skF },
 ];
 
