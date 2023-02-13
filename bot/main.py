@@ -226,6 +226,7 @@ if __name__ == '__main__':
     print('Bot initialized.')
 
     dp.add_handler(CommandHandler("start", start, pass_args=True))
+    dp.add_handler(CommandHandler("shutupandtakemymoney", start, pass_args=True))
     dp.add_handler(CommandHandler("mode", change_mode, pass_args=True))
     dp.add_handler(CommandHandler("sub", subscribe))
     dp.add_handler(CommandHandler("unsub", unsubscribe))
