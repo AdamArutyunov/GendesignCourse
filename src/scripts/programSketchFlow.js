@@ -19,7 +19,7 @@ export const skFlow = (container, ff) => {
       p.background('white');
       circles = [];
 
-      for (let i = 0; i < 70; i++) {
+      for (let i = 0; i < 50; i++) {
         p.colorMode(p.HSL);
         // let randomColor = [(p.random() * 50 + colorShift) % 360, 100, 60];
         // let randomColor = ff.getColor(0.5)
@@ -58,7 +58,7 @@ export const skFlow = (container, ff) => {
           // if (c[3] <= 0) return;
 
           p.fill(c[2]);
-          p.circle(c[0], c[1], 20);
+          p.circle(c[0], c[1], 30);
 
           let vector = getVector(c[0], c[1]);
 

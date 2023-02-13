@@ -11,10 +11,15 @@ export const skSubdiv = (container, ff) => {
     function grid(x, y, step, num) {
       let id = Math.floor(9999.99 + x * 99.9 - y * 999.9 + p.millis() / 100);
       // let randomColor = ff.getColor((colorShift / 360)+.5);
+      //
+      let lightness = (p.dist(p.width / 2, p.height / 2, x, y) / p.width) * 2;
+      lightness -= p.frameCount / 100;
+      lightness = lightness - p.floor(lightness);
+
       let randomColor = p.color([
         (p.random() * 100 + colorShift) % 360,
         100,
-        100,
+        lightness * 90 + 20,
       ]);
       randomColor.setAlpha(0.1);
       p.fill(randomColor);

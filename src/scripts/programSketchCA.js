@@ -44,7 +44,7 @@ export const skCA = (container, ff) => {
           let hue = window.colorShift + p.noise(i, j) * 5 - 2;
           hue %= 360;
           if (cells[i][j] < 240) continue;
-          if (cells[i][j] == 254) p.fill(hue, 80, 100);
+          if (cells[i][j] == 254) p.fill(hue, 95, 100);
           else p.fill(hue, 100, 100);
           p.rect(i * cell_width, j * cell_width, cell_width, cell_width);
         }
