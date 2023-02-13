@@ -73,7 +73,7 @@ a:hover {
     padding: 0 5%;
 
     &#reviews {
-      background: #f0f0f0;
+      background: white;
       padding-bottom: 3em;
       padding-top: 3em;
     }
@@ -88,6 +88,7 @@ a:hover {
 
     &#buy {
       position: relative;
+      margin-top: 4em;
     }
   }
 }
@@ -225,12 +226,63 @@ a:hover {
   }
 }
 
+#reviews {
+  .reviews {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+
+    $gap: 0.8em;
+    gap: $gap;
+
+    .review-column {
+      flex: calc(50% - #{$gap * 2}) 0 0;
+
+      display: flex;
+      flex-direction: column;
+      gap: $gap;
+    }
+
+    .review {
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+
+      padding: 1.2em 1.5em 1.5em 1.2em;
+      background: #f0f0f0;
+      border-radius: 0.5em;
+
+      .author {
+        display: flex;
+        gap: 0.8em;
+        align-items: center;
+        height: 3em;
+        font-size: 0.9em;
+
+        object-fit: contain;
+
+        .photo {
+          width: 3em;
+          aspect-ratio: 1;
+          border-radius: 50%;
+
+          box-shadow: 0 0 10px #ccc;
+        }
+      }
+
+      .content {
+        font-style: italic;
+      }
+    }
+  }
+}
+
 #sketchFooter {
-  width: 20em;
+  width: 21em;
   aspect-ratio: 1;
   position: absolute;
-  top: -2em;
-  left: 1em;
+  top: -1.8em;
+  left: -1em;
   z-index: -1;
   opacity: 0.6;
 
@@ -239,7 +291,7 @@ a:hover {
 }
 
 .buy-block {
-  background: rgba(200, 200, 200, 0.1);
+  background: rgba(230, 230, 230, 0.2);
   backdrop-filter: blur(1px);
   padding: 1em 1.2em 1.5em 1.2em;
 
@@ -250,6 +302,7 @@ a:hover {
   .buy-caption {
     h3 {
       font-size: 2em;
+      font-variation-settings: 'wght' 700;
     }
   }
 
