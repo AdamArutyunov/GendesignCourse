@@ -73,7 +73,7 @@ a:hover {
     padding: 0 5%;
 
     &#reviews {
-      background: #f0f0f0;
+      background: white;
       padding-bottom: 3em;
       padding-top: 3em;
     }
@@ -88,6 +88,7 @@ a:hover {
 
     &#buy {
       position: relative;
+      margin-top: 4em;
     }
   }
 }
@@ -220,6 +221,57 @@ a:hover {
 
       width: 100%;
       height: 100%;
+    }
+  }
+}
+
+#reviews {
+  .reviews {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+
+    $gap: 0.8em;
+    gap: $gap;
+
+    .review-column {
+      flex: calc(50% - #{$gap * 2}) 0 0;
+
+      display: flex;
+      flex-direction: column;
+      gap: $gap;
+    }
+
+    .review {
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+
+      padding: 1.2em 1.5em 1.5em 1.2em;
+      background: #f0f0f0;
+      border-radius: 0.5em;
+
+      .author {
+        display: flex;
+        gap: 0.8em;
+        align-items: center;
+        height: 3em;
+        font-size: 0.9em;
+
+        object-fit: contain;
+
+        .photo {
+          width: 3em;
+          aspect-ratio: 1;
+          border-radius: 50%;
+
+          box-shadow: 0 0 10px #ccc;
+        }
+      }
+
+      .content {
+        font-style: italic;
+      }
     }
   }
 }
