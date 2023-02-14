@@ -370,6 +370,17 @@ b {
     gap: 1em;
   }
 
+  #reviews {
+    .reviews {
+      flex-direction: column;
+
+      .review-column {
+        flex-basis: 100%;
+        max-width: 100%;
+      }
+    }
+  }
+
   .program {
     grid-template-columns: repeat(1, 1fr);
     grid-gap: 0.5em;
