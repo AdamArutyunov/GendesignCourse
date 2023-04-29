@@ -7,18 +7,44 @@ from telegram import LabeledPrice, Bot
 from telegram.ext import CommandHandler, MessageHandler, Updater, Dispatcher, PreCheckoutQueryHandler, Filters
 
 from permissions import admin_required
+from helpers import generate_exponential_interpolator
 
 load_dotenv()
+
+def get_current_price():
+    from datetime import datetime
+    import math
+
+    template = '%Y-%m-%dT%H:%M:%S'
+
+    start_date = datetime.strptime('2023-05-01T09:00:00', template)
+    end_date = datetime.strptime('2023-05-15T14:00:00', template)
+
+    start_days = 0
+    end_days = (end_date - start_date).total_seconds() / 86400
+
+    current_date = datetime.now()
+
+    current_days = (current_date - start_date).total_seconds() / 86400
+
+    start_price = 9500
+    end_price = 16000
+    
+    generator = generate_exponential_interpolator(start_price, end_price, [start_days, end_days], 0.1)
+
+    price = generator(current_days)
+
+    return math.floor(price / 10) * 10
+
 
 TOKEN = os.getenv('TOKEN')
 PAYMENT_PROVIDER_TOKEN = os.getenv('PROVIDER_TOKEN')
 PROMOCODE_PRICES = {
-    'park_f8Ek39v1f': 10500,
-    'test_nv82REg9a': 100,
-    None: 12500,
+    'park_f8Ek39v1f': lambda: 10500,
+    'test_nv82REg9a': lambda: 100,
+    None: get_current_price,
 }
 LOG_CHAT_ID = -1001665135759
-SUCCESS_LINK = 'https://t.me/+zx93hyfqrjg3ODBi'
 MODES = ['active', 'contact']
 
 data = None
@@ -35,11 +61,33 @@ def load_data():
         with open('data.json') as f:
             data = json.load(f)
     except Exception as f:
-        data = {'mode': 'active', 'subscribers': []}
+        data = {'mode': 'active', 'subscribers': [], 'success_link': 'https://t.me/adam_arutyunov'}
         save_data()
 
 
+@admin_required
+def set_data(update, context):
+    ALLOWED_KEYS = ['success_link']
+
+    args = context.args
+    
+    if not args or len(args) != 2:
+        return update.message.reply_text('Синтаксис: /set <key> <value>')
+
+    key, value = args
+
+    if key not in ALLOWED_KEYS:
+        return update.message.reply_text('Неверный ключ.')
+
+    data[key] = value
+    save_data()
+
+    return update.message.reply_text(f'<b>{key}:</b> {data[key]}', parse_mode='HTML')
+
+
 def start(update, context):
+    subscribe(update, context)
+
     if data['mode'] == 'active':
         return send_invoice(update, context)
 
@@ -50,7 +98,7 @@ def start(update, context):
 def send_contact_prompt(update, context):
     message = '''<b>Ой.</b>
 
-Мест на этот поток нет, всё раскупили. Чтобы в следующий раз мы позвали вас  п е р с о н а л ь н о, нажмите /sub. Можно будет отменить подписку на уведомления с помощью /unsub.
+Мест на этот поток нет, всё раскупили. В следующий раз обязательно позовём вас  п е р с о н а л ь н о!
 
 А пока что приходите тусить <a href='https://t.me/gen_c'>в генклуб</a>! Ну, и на каналы <a href='https://t.me/ivandianov'>Ивана Дианова</a> и <a href='https://t.me/cdarr'>Адама Арутюнова</a> вы же подписались, да?'''
 
@@ -72,26 +120,9 @@ def subscribe(update, context):
 
     subscriber = get_subscriber(chat_id)
 
-    if subscriber:
-        update.message.reply_text('Вы уже подписаны на обновления. Обязательно напишем, когда начнётся новый поток. Отписаться можно через /unsub.')
-    else:
+    if not subscriber:
         data['subscribers'].append({'chat_id': chat_id, 'username': username})
         save_data()
-
-        update.message.reply_text('Теперь вы подписаны на обновления. Обязательно напишем, когда начнётся новый поток. Отписаться можно через /unsub.')
-
-
-def unsubscribe(update, context):
-    chat_id = update.message.chat_id
-    subscriber = get_subscriber(chat_id)
-
-    if subscriber:
-        data['subscribers'].remove(subscriber)
-        save_data()
-
-        update.message.reply_text('Отписали вас от обновлений о новых наборах на курс. Подписаться обратно можно через /sub.')
-    else:
-        update.message.reply_text('Вы не подписаны на обновления о новых наборах на курс. Подписаться можно через /sub.')
 
 
 @admin_required
@@ -163,9 +194,11 @@ def send_invoice(update, context):
     currency = "RUB"
     
     if args and args[0] in PROMOCODE_PRICES:
-        price = PROMOCODE_PRICES[args[0]]
+        price = PROMOCODE_PRICES[args[0]]()
     else:
-        price = PROMOCODE_PRICES[None]
+        price = PROMOCODE_PRICES[None]()
+
+    print(price, flush=True)
 
     prices = [LabeledPrice("Заплатить", price * 100)]
 
@@ -189,7 +222,7 @@ def precheckout_callback(update, context):
 
 def successful_payment_callback(update, context):
     """Confirms the successful payment."""
-    update.message.reply_text("Спасибо за покупку!\n\nСсылка на чат: " + SUCCESS_LINK)
+    update.message.reply_text("Спасибо за покупку!\n\nСсылка на чат: " + data['success_link'])
 
     payment = update.message.successful_payment
     user = update.message.from_user.username
@@ -229,11 +262,11 @@ if __name__ == '__main__':
     dp.add_handler(CommandHandler("shutupandtakemymoney", start, pass_args=True))
     dp.add_handler(CommandHandler("mode", change_mode, pass_args=True))
     dp.add_handler(CommandHandler("sub", subscribe))
-    dp.add_handler(CommandHandler("unsub", unsubscribe))
     dp.add_handler(CommandHandler("subscribers", print_subscribers))
 
     dp.add_handler(CommandHandler("print", print_mailing, pass_args=True))
     dp.add_handler(CommandHandler("send", send_mailing, pass_args=True))
+    dp.add_handler(CommandHandler("set", set_data, pass_args=True))
 
     dp.add_handler(PreCheckoutQueryHandler(precheckout_callback))
 
