@@ -12,7 +12,9 @@ block content
 
     section.promo-price
         .promo
-            | 6 — 24 марта | 12&#8239;500 ₽ | 32&nbsp;места
+            .section 15 мая — 2 июня
+            .section <span class='dynamic-price'></span>
+            .section <img class='infinity' src='/images/infinity.svg'> мест
         .promo-action
             a(href='#buy' class='dotted') Записаться
 
@@ -105,7 +107,7 @@ block content
     section#reviews
       h2 Отзывы
 
-      p Мы провели курс один раз. Отзывы хорошие:
+      p Отзывы хорошие:
       .ids__stack.XS
 
       .reviews
@@ -189,10 +191,10 @@ block content
 
       ul
         li 
-          b Девять вебинаров в Зуме по понедельникам, средам и пятницам с 6 по 24 марта;
+          b Девять вебинаров в Зуме по понедельникам, средам и пятницам с 15 мая по 2 июня;
         li Занятия начинаются в 17:00 по Москве. Занятие длится полтора часа;
         li Записи занятий доступны всегда;
-        li Обязательных домашек нет, да и вообще ничего обязательного нет, но желающим потренироваться мы дадим дополнительные задания;
+        li Мы даём домашние задания, но нет системы наказания за их невыполнение;
         li Чат для общения и оргвопросов в Телеграме.
 
       p Для работы нужен компьютер — с телефона или планшета будет неудобно.
@@ -204,13 +206,33 @@ block content
         .buy-caption
           h3 Записаться на курс
 
+          b Стоимость входного билета растёт по мере приближения к началу занятий:
+
+          .price-comparison
+            .price.disabled
+              .value
+                | 9500 ₽
+              .description
+                | 1 мая
+            .price.active
+              .value
+                span.dynamic-price
+              .description
+                | Сейчас
+            .price.future
+              .value
+                | 16 000 ₽
+              .description
+                | 15 мая
+
+
         .buy-form
           .buy-action
             //input(type='email' placeholder='Электропочта')
 
             .buy-controls
               a(href='https://t.me/gendesign_bot')
-                button() Заплатить 12&#8239;500 ₽
+                button() Заплатить<span class='dynamic-price'></span>
 
           .buy-disclaimer
             //p(style='color: #880000') (Запись откроется чуть позже.)

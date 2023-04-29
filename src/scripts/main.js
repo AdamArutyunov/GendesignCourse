@@ -109,3 +109,76 @@ document.querySelectorAll('.dotted').forEach(el => {
     target.scrollIntoView({ behavior: 'smooth' });
   });
 });
+
+function generateExponentialInterpolator(startY, endY, xRange, b) {
+  const xValues = Array.from(
+    { length: 1000 },
+    (_, i) => (i / 999) * (xRange[1] - xRange[0]) + xRange[0]
+  );
+  const a = startY;
+  const c = 0;
+  const yValues = xValues.map(x => a * Math.exp(b * x) + c);
+  const yRange = endY - startY;
+  return function exponentialInterpolator(x) {
+    const t = (x - xRange[0]) / (xRange[1] - xRange[0]);
+    const y =
+      a +
+      (yRange * (Math.exp(b * (t * (xRange[1] - xRange[0]))) - 1)) /
+        (Math.exp(b * (xRange[1] - xRange[0])) - 1);
+    return y;
+  };
+}
+
+function updatePrice() {
+  const startDate = new Date('01 May 2023 09:00 UTC+0');
+  const endDate = new Date('15 May 2023 14:00 UTC+0');
+
+  const startDays = 0;
+  const endDays = (endDate - startDate) / 1000 / 86400;
+
+  let date = new Date();
+  let currentDays =
+    (Date.UTC(
+      date.getUTCFullYear(),
+      date.getUTCMonth(),
+      date.getUTCDate(),
+      date.getUTCHours(),
+      date.getUTCMinutes(),
+      date.getUTCSeconds()
+    ) -
+      startDate) /
+    1000 /
+    86400;
+
+  if (currentDays > endDays) return setPrice('(Запись окончена)');
+
+  const startPrice = 9500;
+  const endPrice = 16000;
+
+  const gen = generateExponentialInterpolator(
+    startPrice,
+    endPrice,
+    [startDays, endDays],
+    0.1
+  );
+
+  let price = gen(currentDays);
+  price = Math.floor(price / 10) * 10;
+
+  let fPrice = String(price);
+  if (price >= 10000) {
+    fPrice = fPrice.slice(0, -3) + ' ' + fPrice.slice(-3);
+  }
+  fPrice += ' ₽';
+
+  setPrice(fPrice);
+}
+
+function setPrice(formattedPrice) {
+  document.querySelectorAll('.dynamic-price').forEach(el => {
+    el.innerText = formattedPrice;
+  });
+}
+
+updatePrice();
+setInterval(updatePrice, 1000);

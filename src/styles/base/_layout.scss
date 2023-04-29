@@ -61,16 +61,45 @@ a:hover {
   display: inline-flex;
   justify-content: center;
   align-items: center;
+
+  .section {
+    padding: 0 0.8em;
+    display: flex;
+    align-items: center;
+
+    border-left: 0.05em solid black;
+  }
+
+  .section:first-child {
+    padding-left: 0;
+    border-left: none;
+  }
+
+  .section:last-child {
+    padding-right: 0;
+  }
+
+  img {
+    width: 1em;
+    margin-right: 0.5em;
+  }
+
+  span {
+    white-space: nowrap;
+  }
 }
 
 .ids__wrapper {
   font-size: 1.2em;
   margin-top: 2em;
-  padding-bottom: 4em;
   width: 100%;
 
   section {
     padding: 0 5%;
+
+    &:last-child {
+      padding-bottom: 6em;
+    }
 
     &#reviews {
       background: white;
@@ -300,10 +329,65 @@ a:hover {
   grid-template-columns: repeat(2, 1fr);
   border-radius: 0.5em;
 
+  grid-gap: 4em;
+
   .buy-caption {
     h3 {
       font-size: 2em;
       font-variation-settings: 'wght' 700;
+    }
+  }
+
+  .price-comparison {
+    margin-top: 1.5em;
+
+    font-family: 'PT Mono';
+    font-weight: bold;
+
+    display: flex;
+    gap: 4em;
+    grid-template-columns: repeat(3, 1fr);
+
+    .price {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+
+      padding-top: 0.3em;
+      border-radius: 0.3em;
+
+      &:not(:first-child):before {
+        content: '→';
+        position: absolute;
+        left: -1.5em;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.5em;
+        font-weight: bold;
+      }
+
+      &.active {
+        padding-right: 1.5em;
+        padding-left: 0.5em;
+        padding-bottom: 0.4em;
+        border: 2px solid black;
+        .value {
+        }
+      }
+
+      &.disabled {
+        opacity: 0.5;
+      }
+
+      &.future {
+        .value,
+        .description {
+        }
+      }
+
+      .value {
+        font-size: 1.5em;
+      }
     }
   }
 
@@ -353,6 +437,7 @@ b {
     justify-content: center;
     align-items: center;
     width: 100%;
+    gap: 0.4ch;
   }
 }
 
@@ -401,7 +486,7 @@ b {
 
   .buy-block {
     grid-template-columns: repeat(1, 1fr);
-    grid-gap: 0.4em;
+    grid-gap: 2em;
   }
 
   .ids__wrapper {
