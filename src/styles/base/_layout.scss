@@ -155,12 +155,12 @@ video,
       border: none;
     }
   }
+}
 
-  .caption {
-    margin-top: 0.5em;
-    font-size: 0.8em;
-    color: #888;
-  }
+.caption {
+  margin-top: 0.5em;
+  font-size: 0.8em;
+  color: #888;
 }
 
 .half {
@@ -199,7 +199,7 @@ video,
       box-shadow: 0 0 30px 0px #bbb;
     }
 
-    .caption {
+    .description {
       font-size: 1.2em;
     }
   }
