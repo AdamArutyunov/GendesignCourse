@@ -6,17 +6,20 @@ block meta
 
 block content
   .ids__wrapper
-    section
+    section.black
       h1
         | Курс генеративного дизайна
 
-    section.promo-price
+    section.black.promo-price
         .promo
-            .section 15 мая — 2 июня
+            .section 15&nbsp;мая&nbsp;— 2&nbsp;июня
             .section <span class='dynamic-price'></span>
             .section <img class='infinity' src='/images/infinity.svg'> мест
         .promo-action
             a(href='#buy' class='dotted') Записаться
+
+    section.black.showreel
+        video(src='/video/showreel.mp4' controls autoplay muted)
 
     section.half#header
 
@@ -267,11 +270,13 @@ block content
                 | 9500 ₽
               .description
                 | 1 мая
+            .arrow →
             .price.active
               .value
                 span.dynamic-price
               .description
                 | Сейчас
+            .arrow →
             .price.future
               .value
                 | 16 000 ₽
