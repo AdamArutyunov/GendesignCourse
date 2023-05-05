@@ -188,7 +188,7 @@ def send_invoice(update, context):
     chat_id = update.message.chat_id
     title = "Курс генеративного дизайна"
     description = "Доступ к курсу генеративного дизайна https://course.genclub.club.\n\nПосле оплаты бот пришлёт ссылку на вступление в телеграм-чат. Если что-то пошло не так, напишите @adam_arutyunov.\n"
-    photo_url = 'https://course.genclub.club/images/og.jpg?a=5'
+    photo_url = 'https://course.genclub.club/images/og.jpg?a=6'
     payload = "Gendesign-Course-Payload"
 
     currency = "RUB"
