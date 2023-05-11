@@ -40,7 +40,7 @@ def get_current_price():
 TOKEN = os.getenv('TOKEN')
 PAYMENT_PROVIDER_TOKEN = os.getenv('PROVIDER_TOKEN')
 PROMOCODE_PRICES = {
-    'park_f8Ek39v1f': lambda: 10500,
+    'old_f8Ek39v1f': lambda: 7500,
     'test_nv82REg9a': lambda: 100,
     None: get_current_price,
 }
