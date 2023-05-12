@@ -42,6 +42,7 @@ PAYMENT_PROVIDER_TOKEN = os.getenv('PROVIDER_TOKEN')
 PROMOCODE_PRICES = {
     'old_f8Ek39v1f': lambda: 7500,
     'test_nv82REg9a': lambda: 100,
+    'prev_bQekv23X8': lambda: 4750,
     None: get_current_price,
 }
 LOG_CHAT_ID = -1001665135759
