@@ -40,8 +40,10 @@ def get_current_price():
 TOKEN = os.getenv('TOKEN')
 PAYMENT_PROVIDER_TOKEN = os.getenv('PROVIDER_TOKEN')
 PROMOCODE_PRICES = {
-    'park_f8Ek39v1f': lambda: 10500,
+    'old_f8Ek39v1f': lambda: 7500,
     'test_nv82REg9a': lambda: 100,
+    'prev_bQekv23X8': lambda: 4750,
+    'yuri_3b38fFD35': lambda: 11500,
     None: get_current_price,
 }
 LOG_CHAT_ID = -1001665135759
@@ -188,7 +190,7 @@ def send_invoice(update, context):
     chat_id = update.message.chat_id
     title = "Курс генеративного дизайна"
     description = "Доступ к курсу генеративного дизайна https://course.genclub.club.\n\nПосле оплаты бот пришлёт ссылку на вступление в телеграм-чат. Если что-то пошло не так, напишите @adam_arutyunov.\n"
-    photo_url = 'https://course.genclub.club/images/og.jpg?a=3'
+    photo_url = 'https://course.genclub.club/images/og.jpg?a=6'
     payload = "Gendesign-Course-Payload"
 
     currency = "RUB"
